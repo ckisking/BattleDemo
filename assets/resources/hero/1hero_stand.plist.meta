@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.1",
+  "ver": "1.2.2",
   "uuid": "cac78999-e952-451e-b626-590e78945b67",
   "rawTextureUuid": "13c0472b-e734-4805-99ac-9feeb836334e",
   "size": {
@@ -7,7 +7,6 @@
     "height": 512
   },
   "type": "Texture Packer",
-  "rawTextureUrl": "db://assets/resources/hero/1hero_stand.png",
   "subMetas": {
     "1hero_stand_0.png": {
       "ver": "1.0.3",

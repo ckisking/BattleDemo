@@ -4,17 +4,13 @@
 var Rocker = require('RockerScript');
 var UnitSprite = require('UnitSpriteScript');
 // 方向
-var Direction = cc.Enum({
-    DEFAULT      : 0,
-    D_UP         : 1,
-    D_RIGHT_UP   : 2,
-    D_RIGHT      : 3,
-    D_RIGHT_DOWN : 4,
-    D_DOWN       : 5,
-    D_LEFT_DOWN  : 6,
-    D_LEFT       : 7,
-    D_LEFT_UP    : 8,
-});
+var Direction = require('GlobalScript').Direction;
+var ActionState = require('GlobalScript').ActionState;
+
+//状态
+var IdelState = require('IdelState');
+var WalkState = require('WalkState');
+var NorAttackState = require('NorAttackState');
 //攻击方式（连续攻击会改变攻击方式）
 var AttackMode = cc.Enum({
     ATTACK_DEFAULT : 0,
@@ -45,7 +41,9 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        //记录普通攻击第几下
         this._attackMode = AttackMode.ATTACK_1;
+        //记录当前可以打断idel、Walk状态的动作
         this.nowHeroAction = '1hero_attack1';
         //普通攻击1的碰撞框
         this.collider = this.attackNode.getComponent("cc.BoxCollider");
@@ -53,6 +51,13 @@ cc.Class({
         cc.director.getCollisionManager().enabled = true;
         //是否显示碰撞框
         cc.director.getCollisionManager().enabledDebugDraw = true;   
+    },
+    
+    start : function () {
+        this.idelState = new IdelState();
+        this.walkState = new WalkState();
+        this.norAttackState = new NorAttackState();
+        this.changeState(this.idelState); 
     },
     
     onCollisionEnter: function (other, self) {
@@ -64,8 +69,57 @@ cc.Class({
     onDisabled: function () {
         cc.director.getCollisionManager().enabledDebugDraw = false;
     },
-    // 获取动画
-    getAnimate : function(dir){
+    
+    //根据状态改变动画
+    changeActionByState : function (state) {
+        var anim = this.getComponent(cc.Animation);
+        this._actionState = state; 
+        if(state == ActionState.ACTION_STATE_IDLE){
+            anim.play('1hero_stand');
+        }
+        else if(state == ActionState.ACTION_STATE_WALK){
+            anim.play('1hero_run');
+        }
+        else if(state == ActionState.ACTION_STATE_NOR_ATTACK){
+
+            // anim.play('1hero_attack1');
+            var animName = '1hero_attack' + this._attackMode;
+            this.nowHeroAction = animName;
+             anim.play(animName);
+             this._attackMode += 1;
+             if(this._attackMode == AttackMode.ATTACK_4){
+                  this._attackMode = AttackMode.ATTACK_1;
+             }
+        }
+        else if(state == ActionState.ACTION_STATE_SKILL_ATTACK){
+            
+        }
+        else if(state == ActionState.ACTION_STATE_BEHIT){
+            
+        }
+        else if(state == ACTION_STATE_DEAD){
+            
+        }
+    },
+    
+    //根据方向判断是否改变状态
+    changestateByDir : function (dir) {
+        if (dir > 0) {
+            this.changeState(new WalkState()); 
+            this.mCurState.execute(this);
+            this.onRun();
+        }
+        else if(dir === 0){
+           this.changeState(new IdelState()); 
+           this.mCurState.execute(this);
+        }
+        if(dir > 1 && dir < 5){
+            this.node.scaleX = 1.8;
+            cc.log(this.node.getComponent("cc.BoxCollider").offset.x);
+        }
+        else if(dir > 5 && dir < 9){
+            this.node.scaleX = -1.8;
+        }
     },
     
     // 改变方向[切换帧动画]
@@ -74,9 +128,6 @@ cc.Class({
         var animRunState = anim.getAnimationState('1hero_run').isPlaying;
         var animStandState = anim.getAnimationState('1hero_stand').isPlaying;
         
-        if(anim.getAnimationState( this.nowHeroAction).isPlaying){
-            return;
-        }
         if (dir > 0 && !animRunState) {
             anim.play('1hero_run');
         }
@@ -152,16 +203,8 @@ cc.Class({
     
     //普通攻击
     onAttack : function () {
-        var anim = this.getComponent(cc.Animation); 
-        var animName = '1hero_attack' + this._attackMode;
-        if(!anim.getAnimationState(this.nowHeroAction).isPlaying){
-             this.nowHeroAction = animName;
-             anim.play(animName);
-             this._attackMode += 1;
-             if(this._attackMode == AttackMode.ATTACK_4){
-                  this._attackMode = AttackMode.ATTACK_1;
-             }
-        }
+          this.changeState(this.norAttackState); 
+          this.mCurState.execute(this);
     },
     //改变攻击方式（1秒后执行)
     changeAttackMode : function () {
@@ -197,7 +240,13 @@ cc.Class({
     
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
-        this.boneChangeDir(Rocker._direction); 
-        this.onRun();
+        var anim = this.getComponent(cc.Animation); 
+        if(anim.getAnimationState( this.nowHeroAction).isPlaying){
+            return;
+        }
+        // this.boneChangeDir(Rocker._direction); 
+        // this.onRun();
+        
+        this.changestateByDir(Rocker._direction);
     },
 });

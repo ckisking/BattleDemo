@@ -1,5 +1,5 @@
 {
-  "ver": "1.2.1",
+  "ver": "1.2.2",
   "uuid": "c1aaad55-732e-400a-a269-e2cf3afac2b6",
   "rawTextureUuid": "ded0fdbf-e05c-458b-882e-8ae5b32cd164",
   "size": {
@@ -7,7 +7,6 @@
     "height": 1024
   },
   "type": "Texture Packer",
-  "rawTextureUrl": "db://assets/resources/hero/S082_rageskill.png",
   "subMetas": {
     "S082_rageskill_10.png": {
       "ver": "1.0.3",

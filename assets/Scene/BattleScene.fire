@@ -3,6 +3,7 @@
     "__type__": "cc.SceneAsset",
     "_name": "",
     "_objFlags": 0,
+    "_rawFiles": null,
     "scene": {
       "__id__": 1
     }
@@ -97,7 +98,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 36
+        "__id__": 37
       }
     ],
     "_prefab": null,
@@ -479,8 +480,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
-      "height": 159
+      "width": 276,
+      "height": 150
     },
     "_children": [
       {
@@ -661,7 +662,6 @@
       {
         "__uuid__": "c2315330-dba5-4a44-914d-63e13a8496f3"
       },
-      null,
       {
         "__uuid__": "e267c164-1a17-48fb-bcca-fe7a34cced02"
       },
@@ -679,9 +679,10 @@
       "__id__": 12
     },
     "_enabled": true,
-    "hp": 100,
-    "baseAtt": 20,
+    "hp": 0,
+    "baseAtt": 100,
     "baseDefen": 0,
+    "_actionState": 0,
     "floorNode": {
       "__id__": 11
     },
@@ -739,7 +740,7 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 0.5,
       "y": 0
     },
     "_contentSize": {
@@ -754,8 +755,8 @@
     "_scaleY": 1.8,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1286,
-      "y": 179
+      "x": 1347,
+      "y": 152
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -868,18 +869,27 @@
     },
     "_enabled": true,
     "hp": 1000,
-    "baseAtt": 5,
-    "baseDefen": 5,
+    "baseAtt": 0,
+    "baseDefen": 0,
+    "_actionState": 0,
     "hitbloodLab": {
       "__uuid__": "c7ed0687-458d-477e-87ec-372c5c265814"
     },
-    "spasticity": 0.5
+    "spasticity": 0.5,
+    "moveDirection": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "eyeArea": 400,
+    "attackArea": 200,
+    "aiState": 0,
+    "nextDecisionTime": 0,
+    "speed": 0.1
   },
   {
     "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 21
-    },
+    "root": null,
     "asset": {
       "__uuid__": "ec8492ea-80ae-4790-ae03-92f84f8244cd"
     },
@@ -1201,9 +1211,22 @@
     "_reorderChildDirty": false,
     "_id": "f861fNDoF1LwIertdhBLIlC",
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 36
+      }
+    ],
     "_prefab": null,
     "groupIndex": 0
+  },
+  {
+    "__type__": "e0955AydZFClZ7l69OTM+4o",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 35
+    },
+    "_enabled": true
   },
   {
     "__type__": "cc.Canvas",

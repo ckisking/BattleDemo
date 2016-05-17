@@ -3,18 +3,7 @@
  */
 
 // 方向
-var Direction = cc.Enum({
-    DEFAULT      : 0,
-    D_UP         : 1,
-    D_RIGHT_UP   : 2,
-    D_RIGHT      : 3,
-    D_RIGHT_DOWN : 4,
-    D_DOWN       : 5,
-    D_LEFT_DOWN  : 6,
-    D_LEFT       : 7,
-    D_LEFT_UP    : 8,
-});
-var PI = 3.1415;
+var Direction = require('GlobalScript').Direction;
 
 var Rocker = cc.Class({
     extends: cc.Component,
@@ -51,7 +40,7 @@ var Rocker = cc.Class({
     },
     //获得弧度
     getRadians : function (pos) {
-      Rocker._radians = PI / 180 * this.getAngle(pos);
+      Rocker._radians = Math.PI / 180 * this.getAngle(pos);
       return Rocker._radians;  
     },
     //获取长度
