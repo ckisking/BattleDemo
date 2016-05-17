@@ -1,0 +1,16 @@
+info face="楷体" size=32 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1 outline=0
+common lineHeight=33 base=28 scaleW=256 scaleH=128 pages=1 packed=0 alphaChnl=1 redChnl=2 greenChnl=2 blueChnl=2
+page id=0 file="blood_player_num_0.png"
+chars count=12
+char id=43   x=98    y=62    width=40    height=54    xoffset=0     yoffset=0     xadvance=40    page=0  chnl=15
+char id=45   x=139   y=62    width=40    height=50    xoffset=0     yoffset=0     xadvance=40    page=0  chnl=15
+char id=48   x=168   y=0     width=33    height=60    xoffset=0     yoffset=0     xadvance=33    page=0  chnl=15
+char id=49   x=33    y=64    width=32    height=59    xoffset=0     yoffset=0     xadvance=32    page=0  chnl=15
+char id=50   x=66    y=62    width=31    height=59    xoffset=0     yoffset=0     xadvance=31    page=0  chnl=15
+char id=51   x=202   y=0     width=32    height=60    xoffset=0     yoffset=0     xadvance=32    page=0  chnl=15
+char id=52   x=100   y=0     width=33    height=61    xoffset=0     yoffset=0     xadvance=33    page=0  chnl=15
+char id=53   x=33    y=0     width=31    height=63    xoffset=0     yoffset=0     xadvance=31    page=0  chnl=15
+char id=54   x=134   y=0     width=33    height=61    xoffset=0     yoffset=0     xadvance=33    page=0  chnl=15
+char id=55   x=0     y=0     width=32    height=64    xoffset=0     yoffset=0     xadvance=32    page=0  chnl=15
+char id=56   x=0     y=65    width=32    height=60    xoffset=0     yoffset=0     xadvance=32    page=0  chnl=15
+char id=57   x=65    y=0     width=34    height=61    xoffset=0     yoffset=0     xadvance=34    page=0  chnl=15

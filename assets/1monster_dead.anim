@@ -1,0 +1,24 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "1monster_dead",
+  "_objFlags": 0,
+  "_duration": 0.016666666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "dc3e3263-b92a-4eb7-90e4-ad603125703b"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
