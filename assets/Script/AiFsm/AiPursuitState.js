@@ -12,7 +12,7 @@ var AiIdelState = cc.Class({
         //获取角色之前的状态
         var oldState = unit.aiState; 
         //角色在任何情况下都能转化为待机状态
-        if(oldState !=  AIState.AI_IDEL){
+        if(oldState !=  AIState.AI_PURSUIT){
             unit.onIdel();
         }
     },

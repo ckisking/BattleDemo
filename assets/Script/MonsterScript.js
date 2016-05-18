@@ -2,6 +2,7 @@
  * 怪物控制脚本
  */
 var UnitSprite = require('UnitSpriteScript');
+var Hero = require('HeroScript');
 var AIState = require('GlobalScript').AIState; 
 
 var ActionState = require('GlobalScript').ActionState;
@@ -53,7 +54,6 @@ cc.Class({
     onCollisionEnter: function (other, self) {
         var otherGroup = other.node.group;
         var selfGroup = self.node.group;
-        cc.log(selfGroup);
         //被英雄攻击
         if(otherGroup == "heroAttack" && selfGroup == "monster"){
             this.node.color = cc.Color.RED;
@@ -81,7 +81,6 @@ cc.Class({
     
     //碰撞监测结束
     onCollisionExit: function (other, self) {
-       cc.log("检测结束");
     },
     
     
@@ -127,7 +126,6 @@ cc.Class({
     onPatrol : function () {
         var moveDirectionx = this.getRandomInt(-1, 2);
         var moveDirectiony = this.getRandomInt(-1, 2);
-        cc.log("x:" +moveDirectionx +"y: " + moveDirectiony );
         this.moveDirection.x  = moveDirectionx > 0 ? (moveDirectionx  + this.speed.x) : (moveDirectionx  -this.speed.x);
         this.moveDirection.y  =moveDirectiony  > 0 ? (moveDirectiony  +this.speed.y) : (moveDirectiony  -this.speed.y);
         this.nextDecisionTime =Math.random() * 100;
@@ -236,6 +234,12 @@ cc.Class({
                  actualP.y = this.moveRange.y;
              }
             this.node.position = actualP;
+        }
+        else if(this.aiState == AIState.AI_PURSUIT)
+        {
+            var currentP= this.node.position;                      //当前坐标
+            var expectP = cc.pAdd(currentP , this.moveDirection);  //期望坐标
+            cc.log(Hero.instance.node.position);
         }
     },
 });

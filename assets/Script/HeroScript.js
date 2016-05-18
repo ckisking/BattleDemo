@@ -1,5 +1,5 @@
 /**
- * 英雄控制脚本
+ * 英雄类脚本(单例)
  */
 var Rocker = require('RockerScript');
 var UnitSprite = require('UnitSpriteScript');
@@ -19,7 +19,7 @@ var AttackMode = cc.Enum({
     ATTACK_3 : 3,
     ATTACK_4 : 4,
 })
-cc.Class({
+var Hero = cc.Class({
     extends: UnitSprite,
 
     properties: {
@@ -38,9 +38,12 @@ cc.Class({
         boneSpeed   : 0.8,      // [速度]
         _attackMode : AttackMode.ATTACK_DEFAULT
     },
-
+    statics : {
+        instance : null,  
+    },
     // use this for initialization
     onLoad: function () {
+        Hero.instance = this;
         //记录普通攻击第几下
         this._attackMode = AttackMode.ATTACK_1;
         //记录当前可以打断idel、Walk状态的动作
@@ -141,7 +144,6 @@ cc.Class({
         }
         if(dir > 1 && dir < 5){
             this.node.scaleX = 1.8;
-            cc.log(this.node.getComponent("cc.BoxCollider").offset.x);
         }
         else if(dir > 5 && dir < 9){
             this.node.scaleX = -1.8;
