@@ -2,7 +2,7 @@
  * 飘血动画控制
  */
 var bloodAction = {
-    move : cc.moveBy(0.5, cc.p(0, 40)),
+    move : cc.moveBy(0.5, cc.p(0, 30)),
     hide : cc.fadeOut(0.5)
 }
 cc.Class({

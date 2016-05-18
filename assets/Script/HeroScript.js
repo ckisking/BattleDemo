@@ -60,6 +60,11 @@ cc.Class({
         this.changeState(this.idelState); 
     },
     
+    //初始化英雄属性
+    initHero : function (range) {
+        this.moveRange = range;
+    },
+    
     onCollisionEnter: function (other, self) {
         // this.node.color = cc.Color.RED;
     },
@@ -189,14 +194,14 @@ cc.Class({
         if(x <= this.node.width / 2){
             x = this.node.width / 2;
         }
-        else if(x >= this.floorNode.width -  this.node.width / 2){
-            x =  this.floorNode.width -  this.node.width / 2;
+        else if(x >= this.moveRange.x -  this.node.width / 2){
+            x =  this.moveRange.x -  this.node.width / 2;
         }
-        if(y <= this.node.height / 2){
-            y = this.node.height / 2;
+        if(y <= 0){
+            y = 0;
         }
-        else if(y >= this.floorNode.height + this.node.height / 2){
-            y = this.floorNode.height + this.node.height / 2;
+        else if(y >= this.moveRange.y){
+            y = this.moveRange.y;
         }
         this.node.position = cc.p(x, y);
     },

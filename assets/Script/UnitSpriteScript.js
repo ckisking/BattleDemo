@@ -14,17 +14,19 @@ var UnitSprite = cc.Class({
     extends: cc.Component,
 
     properties: {
-        hp : 0,
-        baseAtt : 0,
-        baseDefen : 0,
-        _actionState : 0
+        hp : 0,                        //血量
+        baseAtt : 0,                   //攻击
+        baseDefen : 0,                 //防御
+        _actionState : 0,              //动作状态
+        
+        moveRange : new cc.Vec2(0,0)      //移动范围     
     },
 
     // use this for initialization
     onLoad: function () {
     },
     
-    //改变状态
+    //改变AI状态
     changeState : function (enstate){
         this.mCurState = enstate; 
     }

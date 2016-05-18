@@ -1,0 +1,33 @@
+info face="AvenirNext-Heavy" size=19 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=4,4
+common lineHeight=26 base=19 scaleW=128 scaleH=128 pages=1 packed=0
+page id=0 file="sanguo_jytiao.png"
+chars count=24
+char id=41 x=4 y=4 width=10 height=21 xoffset=1 yoffset=3 xadvance=8 page=0 chnl=0 letter=")"
+char id=40 x=18 y=4 width=9 height=21 xoffset=0 yoffset=3 xadvance=8 page=0 chnl=0 letter="("
+char id=47 x=31 y=4 width=13 height=20 xoffset=-0 yoffset=2 xadvance=10 page=0 chnl=0 letter="/"
+char id=91 x=48 y=4 width=7 height=19 xoffset=1 yoffset=4 xadvance=8 page=0 chnl=0 letter="["
+char id=93 x=59 y=4 width=7 height=19 xoffset=1 yoffset=4 xadvance=8 page=0 chnl=0 letter="]"
+char id=51 x=70 y=4 width=16 height=18 xoffset=1 yoffset=2 xadvance=14 page=0 chnl=0 letter="3"
+char id=48 x=90 y=4 width=15 height=18 xoffset=1 yoffset=2 xadvance=14 page=0 chnl=0 letter="0"
+char id=56 x=109 y=4 width=15 height=18 xoffset=1 yoffset=2 xadvance=14 page=0 chnl=0 letter="8"
+char id=87 x=4 y=29 width=25 height=17 xoffset=0 yoffset=3 xadvance=21 page=0 chnl=0 letter="W"
+char id=52 x=33 y=29 width=16 height=17 xoffset=1 yoffset=3 xadvance=14 page=0 chnl=0 letter="4"
+char id=55 x=53 y=29 width=14 height=17 xoffset=2 yoffset=3 xadvance=14 page=0 chnl=0 letter="7"
+char id=69 x=71 y=29 width=13 height=17 xoffset=1 yoffset=3 xadvance=12 page=0 chnl=0 letter="E"
+char id=49 x=88 y=29 width=12 height=17 xoffset=1 yoffset=3 xadvance=14 page=0 chnl=0 letter="1"
+char id=76 x=104 y=29 width=12 height=17 xoffset=1 yoffset=3 xadvance=11 page=0 chnl=0 letter="L"
+char id=53 x=4 y=50 width=16 height=16 xoffset=1 yoffset=4 xadvance=14 page=0 chnl=0 letter="5"
+char id=50 x=24 y=50 width=15 height=16 xoffset=1 yoffset=4 xadvance=14 page=0 chnl=0 letter="2"
+char id=54 x=43 y=50 width=15 height=16 xoffset=1 yoffset=4 xadvance=14 page=0 chnl=0 letter="6"
+char id=57 x=62 y=50 width=15 height=16 xoffset=1 yoffset=4 xadvance=14 page=0 chnl=0 letter="9"
+char id=43 x=81 y=50 width=13 height=14 xoffset=1 yoffset=5 xadvance=14 page=0 chnl=0 letter="+"
+char id=120 x=98 y=50 width=18 height=12 xoffset=-0 yoffset=8 xadvance=14 page=0 chnl=0 letter="x"
+char id=118 x=4 y=70 width=17 height=12 xoffset=-0 yoffset=8 xadvance=13 page=0 chnl=0 letter="v"
+char id=45 x=25 y=70 width=9 height=7 xoffset=1 yoffset=9 xadvance=7 page=0 chnl=0 letter="-"
+char id=46 x=38 y=70 width=7 height=7 xoffset=1 yoffset=13 xadvance=8 page=0 chnl=0 letter="."
+char id=32 x=49 y=70 width=0 height=0 xoffset=5 yoffset=39 xadvance=6 page=0 chnl=0 letter="space"
+kernings count=4
+kerning first=87 second=46 amount=-1
+kerning first=76 second=87 amount=-1
+kerning first=118 second=46 amount=-1
+kerning first=46 second=87 amount=-1

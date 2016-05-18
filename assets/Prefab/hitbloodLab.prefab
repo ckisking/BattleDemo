@@ -3,6 +3,7 @@
     "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
+    "_rawFiles": null,
     "data": {
       "__id__": 1
     }
@@ -15,8 +16,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 99,
+      "b": 11,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -28,8 +29,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 105.75,
-      "height": 22.5
+      "width": 102.63,
+      "height": 63.16
     },
     "_children": [],
     "_rotationX": 0,
@@ -72,11 +73,11 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_fontSize": 18,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "27101b2f-7cd7-4905-9d7a-1e4ccee553d8"
+      "__uuid__": "949142dd-40d6-4716-a767-9835e08f5cee"
     },
     "_isSystemFontUsed": false,
     "_N$string": "-1200",

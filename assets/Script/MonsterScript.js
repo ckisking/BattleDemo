@@ -21,14 +21,14 @@ cc.Class({
         },
         
         spasticity : 0.5,             //僵值
-        moveDirection : {
+        moveDirection : {             //行动方向
             default : new cc.Vec2()    
         },            
         eyeArea : 400,                //警戒距离
         attackArea : 200,             //攻击范围
         aiState : 0,                  //AI状态
         nextDecisionTime : 0,          //延迟时间
-        speed : 5
+        speed : new cc.Vec2(0,0)
     },
 
     // use this for initialization
@@ -40,9 +40,15 @@ cc.Class({
         this.aiPatrolState = new AiPatrolState();
         this.aiIdelState = new AiIdelState();
         this.aiAttackState = new AiAttackState();
-        this.changeState(this.aiPatrolState); 
-        this.aiState = AIState.AI_IDEL;
+        // this.changeState(this.aiIdelState); 
+        this.aiState = AIState.AI_NONE;
     },
+    
+    //初始化怪物属性
+    initMonster : function (range) {
+      this.moveRange = range;
+    },
+    
     //碰撞监测开始
     onCollisionEnter: function (other, self) {
         var otherGroup = other.node.group;
@@ -60,7 +66,7 @@ cc.Class({
             this.hp -= hit;
             //扣血
             var bloodLabel = cc.instantiate(this.hitbloodLab);
-            bloodLabel.position = cc.p(this.node.width/2,this.node.height);
+            bloodLabel.position = cc.p(0, this.node.height - 10);
             bloodLabel.getComponent(cc.Label).string = "-" + hit;
             bloodLabel.scaleX = -1;
             this.node.addChild(bloodLabel);
@@ -89,46 +95,24 @@ cc.Class({
     
     //死亡后触发
     onDead : function () {
-        this.node.runAction(cc.sequence(cc.blink(0.5, 4), cc.removeSelf()));
+        this.node.runAction(cc.sequence(cc.blink(0.5, 4), cc.removeSelf(true)));
     },
     //被销毁后执行
     onDisabled: function () {
         cc.director.getCollisionManager().enabledDebugDraw = false;
     },
     
-     //根据方向判断是否改变状态
-    changestateByDir : function (dir) {
-        if (dir > 0) {
-            this.changeState(new WalkState()); 
-            this.mCurState.execute(this);
-            this.onRun();
-        }
-        else if(dir === 0){
-           this.changeState(new IdelState()); 
-           this.mCurState.execute(this);
-        }
-        if(dir > 1 && dir < 5){
-            this.node.scaleX = 1.8;
-            cc.log(this.node.getComponent("cc.BoxCollider").offset.x);
-        }
-        else if(dir > 5 && dir < 9){
-            this.node.scaleX = -1.8;
-        }
-    },
-    
     //根据状态改变动画
     changeActionByState : function (state) {
         var anim = this.getComponent(cc.Animation);
-        this._actionState = state; 
-        if(state == ActionState.ACTION_STATE_IDLE){
+        this.aiState = state; 
+        if(state == AIState.AI_IDEL){
             anim.play('1monster_stand');
         }
-        else if(state == ActionState.ACTION_STATE_WALK){
+        else if(state == AIState.AI_PATROL){
             anim.play('1monster_run');
         }
-        else if(state == ActionState.ACTION_STATE_NOR_ATTACK){
-
-            // anim.play('1hero_attack1');
+        else if(state == AIState.AI_ATTACK){
             var animName = '1monster_attack' + this._attackMode;
             this.nowHeroAction = animName;
              anim.play(animName);
@@ -137,36 +121,38 @@ cc.Class({
                   this._attackMode = AttackMode.ATTACK_1;
              }
         }
-        else if(state == ActionState.ACTION_STATE_SKILL_ATTACK){
-            
-        }
-        else if(state == ActionState.ACTION_STATE_BEHIT){
-            
-        }
-        else if(state == ACTION_STATE_DEAD){
-            
-        }
     },
     
-    //巡逻
+    //巡逻时执行
     onPatrol : function () {
         var moveDirectionx = this.getRandomInt(-1, 2);
         var moveDirectiony = this.getRandomInt(-1, 2);
         cc.log("x:" +moveDirectionx +"y: " + moveDirectiony );
-        this.moveDirection.x  = moveDirectionx > 0 ? (moveDirectionx  + this.speed) : (moveDirectionx  -this.speed);
-        this.moveDirection.y  =moveDirectiony  > 0 ? (moveDirectiony  +this.speed) : (moveDirectiony  -this.speed);
+        this.moveDirection.x  = moveDirectionx > 0 ? (moveDirectionx  + this.speed.x) : (moveDirectionx  -this.speed.x);
+        this.moveDirection.y  =moveDirectiony  > 0 ? (moveDirectiony  +this.speed.y) : (moveDirectiony  -this.speed.y);
         this.nextDecisionTime =Math.random() * 100;
         if(moveDirectionx > 0){
             this.node.scaleX = 1.8;
         }else{
             this.node.scaleX = -1.8;
         }
+        //改变状态，改变帧动画
+        this.changeActionByState(AIState.AI_PATROL); 
+        
+    },
+    
+    //待机时执行
+    onIdel : function () {
+        //改变状态，改变帧动画
+        this.changeActionByState(AIState.AI_IDEL);
+        this.moveDirection = cc.p(0,0);
     },
     
     getRandomInt : function (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     },
     
+    //AI判断
     execute : function (target, targetBodyWidth) {
         //延时判定
         if(this.nextDecisionTime <= 0 ){
@@ -189,13 +175,14 @@ cc.Class({
         }else{
             isFlipedX = false;
         }
+        var aistate;
         if(distance < self.eyeArea){
-            self.aiState = (distance < self.attackArea) && (Math.abs(pos.y - target.y)) ? AIState.AI_ATTACK : AIState.AI_PURSUIT;
+            aistate = (distance < self.attackArea) && (Math.abs(pos.y - target.y)) ? AIState.AI_ATTACK : AIState.AI_PURSUIT;
         }else{
-            self.aiState = Math.random() > 0.5 ? AIState.AI_PATROL : AIState.AI_IDEL;
+            aistate = Math.random() > 0.5 ? AIState.AI_PATROL : AIState.AI_IDEL;
         }
         
-        switch(self.aiState)
+        switch(aistate)
         {
             case AIState.AI_ATTACK:
             {
@@ -203,9 +190,11 @@ cc.Class({
                 self.nextDecisionTime = 50;
             }
             break;
-            case AIState.AI_IDLE:
+            case AIState.AI_IDEL:
             {
                 cc.log("待机");
+                this.changeState(this.aiIdelState); 
+                this.mCurState.execute(this);
                 self.nextDecisionTime = Math.random() * 100;
             }
             break;
@@ -214,12 +203,14 @@ cc.Class({
                 cc.log("闲逛");
                 this.changeState(this.aiPatrolState); 
                 this.mCurState.execute(this);
-                self.nextDecisionTime = Math.random() * 50;
+                self.nextDecisionTime = Math.random() * 100;
             }
                 break;
             case AIState.AI_PURSUIT:
             {
                 cc.log("追击");
+                this.changeState(this.aiPatrolState); 
+                this.mCurState.execute(this);
                  
             }
             break;
@@ -232,6 +223,18 @@ cc.Class({
             var currentP= this.node.position;             //当前坐标
             var expectP = cc.pAdd(currentP , this.moveDirection);  //期望坐标
             var actualP = expectP;                         //实际坐标
+            if(actualP.x < this.node.width/2){
+                actualP.x = this.node.width/2;
+            }
+            if(actualP.x > this.moveRange.x - this.node.width/2){
+                actualP.x = this.moveRange.x - this.node.width/2;
+            }
+            if(actualP.y < 0){
+                actualP.y = 0;
+            }
+            if(actualP.y > this.moveRange.y){
+                 actualP.y = this.moveRange.y;
+             }
             this.node.position = actualP;
         }
     },

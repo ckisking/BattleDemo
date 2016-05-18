@@ -33,8 +33,9 @@ var ActionState = cc.Enum({
 
 //AI状态枚举
 var AIState = cc.Enum({
+    AI_NONE    : -1,
     AI_IDEL    : -1,                //待机
-    AI_PATROL  :-1,                 //巡逻
+    AI_PATROL  : -1,                 //巡逻
     AI_ATTACK  : -1,                //攻击
     AI_PURSUIT : -1,                //追击
 });

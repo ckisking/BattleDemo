@@ -1,7 +1,6 @@
 /**
- * AI待机状态
+ * AI追击状态
  */
-var ActionState = require('GlobalScript').ActionState;
 var AIState = require('GlobalScript').AIState; 
 var AiIdelState = cc.Class({
     extends:  cc.Component, 

@@ -13,8 +13,7 @@ var AiPatrolState = cc.Class({
         //获取角色之前的状态
         var oldState = unit.aiState; 
         //只有在角色为待机、错误的状态下，才能改变状态为walk
-        if(oldState == AIState.AI_IDEL || oldState == AIState.AI_PATROL){
-            unit.changeActionByState(ActionState.ACTION_STATE_WALK);
+        if(oldState != AIState.AI_PATROL){
             unit.onPatrol();
         }
     },

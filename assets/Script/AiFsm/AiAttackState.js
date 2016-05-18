@@ -2,6 +2,7 @@
  * AI攻击状态
  */
 var ActionState = require('GlobalScript').ActionState;
+var AIState = require('GlobalScript').AIState; 
 var AiAttackState = cc.Class({
     extends:  cc.Component, 
 
