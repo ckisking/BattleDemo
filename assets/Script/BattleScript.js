@@ -21,6 +21,11 @@ var Battle = cc.Class({
         this.monster = cc.find("Canvas/BattleLayer/floorNode/monsterNode");
         this.monster.getComponent('MonsterScript').initMonster(cc.p(this.floorNode.width, this.floorNode.height));
         this.hero.getComponent('HeroScript').initHero(cc.p(this.floorNode.width, this.floorNode.height));
+        
+        //开启碰撞
+        cc.director.getCollisionManager().enabled = true;
+        //开启显示碰撞框
+        cc.director.getCollisionManager().enabledDebugDraw = true; 
     },
 
     // called every frame, uncomment this function to activate update callback

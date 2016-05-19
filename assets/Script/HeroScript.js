@@ -3,58 +3,47 @@
  */
 var Rocker = require('RockerScript');
 var UnitSprite = require('UnitSpriteScript');
-// 方向
+// 全局变量
 var Direction = require('GlobalScript').Direction;
 var ActionState = require('GlobalScript').ActionState;
-
+var AttackMode = require('GlobalScript').AttackMode;
 //状态
 var IdelState = require('IdelState');
 var WalkState = require('WalkState');
 var NorAttackState = require('NorAttackState');
 var BeHitState = require('BeHitState');
-//攻击方式（连续攻击会改变攻击方式）
-var AttackMode = cc.Enum({
-    ATTACK_DEFAULT : 0,
-    ATTACK_1 : 1,
-    ATTACK_2 : 2,
-    ATTACK_3 : 3,
-    ATTACK_4 : 4,
-})
+
 var Hero = cc.Class({
     extends: UnitSprite,
 
     properties: {
-        shootNode : {
+        shootNode : {                  //【远程攻击判断碰撞框】
             default : null,
             type : cc.Prefab  
         },
-        boneSpeed   : 0.8,      // [速度]
-        _attackMode : AttackMode.ATTACK_DEFAULT
+        boneSpeed   : 0.8,      // 【速度】 
     },
+    //静态变量
     statics : {
         instance : null,  
     },
-    // use this for initialization
-    onLoad: function () {
-        Hero.instance = this;
-        //记录普通攻击第几下
-        this._attackMode = AttackMode.ATTACK_1;
-        
-        //普通攻击1的碰撞框
-        this.collider = this.attackNode.getComponent("cc.BoxCollider");
-        //是否开启碰撞
-        cc.director.getCollisionManager().enabled = true;
-        //是否显示碰撞框
-        cc.director.getCollisionManager().enabledDebugDraw = true;   
-        this.anim = this.node.getComponent(cc.Animation);
-    },
     
-    start : function () {
+    onLoad: function () {
+        //初始化类单例
+        Hero.instance = this;
+        //记录普通攻击模式
+        this._attackMode = AttackMode.ATTACK_1; 
+        //获取近战普通攻击碰撞框
+        this.collider = this.attackNode.getComponent("cc.BoxCollider");
+        this.anim = this.getComponent(cc.Animation);  
+        //初始化状态机
         this.idelState = new IdelState();
         this.walkState = new WalkState();
         this.norAttackState = new NorAttackState();
         this.beHitState = new BeHitState();
         this.changeState(this.idelState); 
+        
+        //测试（监听键盘事件）
         var self = this;
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD, 
@@ -71,6 +60,7 @@ var Hero = cc.Class({
         this.moveRange = range;
     },
     
+    //碰撞时触发
     onCollisionEnter: function (other, self) {
         var otherGroup = other.node.group;
         var selfGroup = self.node.group;
@@ -94,34 +84,17 @@ var Hero = cc.Class({
             }
         }
     },
-    
+    //碰撞中，离开碰撞后触发
     onCollisionExit: function (other) {
     },
+    //隐藏后关闭碰撞
     onDisabled: function () {
         cc.director.getCollisionManager().enabledDebugDraw = false;
     },
     
-    //根据状态改变动画
-    changeActionByState : function (state) {
-        var anim = this.getComponent(cc.Animation);
-        this._actionState = state; 
-        if(state == ActionState.ACTION_STATE_IDLE){
-            anim.play('1hero_stand');
-        }
-        else if(state == ActionState.ACTION_STATE_WALK){
-            anim.play('1hero_run');
-        }
-        else if(state == ActionState.ACTION_STATE_NOR_ATTACK){
-
-            var animName = '1hero_attack' + this._attackMode;
-            this.nowHeroAction = animName;
-             anim.play(animName);
-             this._attackMode += 1;
-             if(this._attackMode == AttackMode.ATTACK_4){
-                  this._attackMode = AttackMode.ATTACK_1;
-             }
-        }
-    },
+    ///////////////////////////////////////////////////////////////////
+    //状态机各个不同状态的实现函数
+    //////////////////////////////////////////////////////////////////
     
     //根据方向判断是否改变状态
     changestateByDir : function (dir) {
@@ -142,27 +115,6 @@ var Hero = cc.Class({
             this.node.scaleX = -Math.abs(this.node.scaleX);
         }
     },
-    
-    // 改变方向[切换帧动画]
-    boneChangeDir : function(dir){
-        var anim = this.getComponent(cc.Animation); 
-        var animRunState = anim.getAnimationState('1hero_run').isPlaying;
-        var animStandState = anim.getAnimationState('1hero_stand').isPlaying;
-        
-        if (dir > 0 && !animRunState) {
-            anim.play('1hero_run');
-        }
-        else if(dir === 0 && !animStandState){
-            anim.play('1hero_stand');
-        }
-        if(dir > 1 && dir < 5){
-            this.node.scaleX = Math.abs(this.node.scaleX);
-        }
-        else if(dir > 5 && dir < 9){
-            this.node.scaleX = -Math.abs(this.node.scaleX);
-        }
-    },
-    
     // 跑动
     onRun : function(){
         // 获取摇杆方向
@@ -229,7 +181,6 @@ var Hero = cc.Class({
     //普通攻击状态时执行
     onNorAttack : function () {
          var animName = '1hero_attack' + this._attackMode;
-         this.nowHeroAction = animName;
          this.anim.play(animName);
          this._attackMode += 1;
          if(this._attackMode == AttackMode.ATTACK_4){
@@ -251,6 +202,9 @@ var Hero = cc.Class({
         this.unschedule(this.onRecoverState);
         this.scheduleOnce(this.onRecoverState, this.spasticity);
     },
+    ///////////////////////////////////////////////////////////////////////
+    //END
+    //////////////////////////////////////////////////////////////////////
     
     //普通按钮回调
     onNorAttackCall : function () {
@@ -268,12 +222,12 @@ var Hero = cc.Class({
         this.node.runAction(cc.sequence(cc.blink(0.5, 4), cc.removeSelf(true)));
     },
    
-    //改变攻击方式（1秒后执行)
+    //改变攻击方式（延迟执行)
     changeAttackMode : function () {
           this._attackMode = AttackMode.ATTACK_1;
     },
     
-    //攻击发出抛出物
+    //攻击发出抛出物（远程）
     attackShoot : function () {
         var shootNode = cc.instantiate(this.shootNode);
         shootNode.parent = this.node.parent;
@@ -305,6 +259,7 @@ var Hero = cc.Class({
     },
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
+        //当人物处于攻击、被攻击状态时无法移动
         if(this._actionState == ActionState.ACTION_STATE_BEHIT || this._actionState == ActionState.ACTION_STATE_NOR_ATTACK){
             return;
         }

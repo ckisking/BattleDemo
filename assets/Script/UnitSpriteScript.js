@@ -1,5 +1,5 @@
 /**
- * 怪物和英雄一些定义的基类定义
+ * 怪物和英雄的基类脚本
  */
 // 方向
 var Direction = require('GlobalScript').Direction;
@@ -14,7 +14,7 @@ var UnitSprite = cc.Class({
     extends: cc.Component,
 
     properties: {
-        attackNode : {                 // [攻击碰撞框]
+        attackNode : {                 // [近战攻击碰撞框]
             default : null,
             type : cc.Node
         },
@@ -27,20 +27,34 @@ var UnitSprite = cc.Class({
         baseDefen : 0,                 //防御
         _actionState : 0,              //动作状态
         spasticity : 0.5,             //僵值
-        moveRange : new cc.Vec2(0,0)      //移动范围     
+        moveRange : new cc.Vec2(0,0),      //移动范围 
+        _attackMode : 0   //普通攻击模式    
     },
 
     // use this for initialization
     onLoad: function () {
     },
     
-    //改变AI状态
+    //改变状态机状态
     changeState : function (enstate){
         this.mCurState = enstate; 
-    }
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
+    },
+    
+        //攻击发出抛出物（远程）
+    attackShoot : function () {
+        var shootNode = cc.instantiate(this.shootNode);
+        shootNode.parent = this.node.parent;
+        var speed;
+        if(this.node.scaleX < 0){
+            speed = -15;
+        }
+        else{
+            speed = 15;
+        }
+        shootNode.getComponent("ShootScript").initShoot(speed, 25, 1, 1);
+        shootNode.position = cc.p(this.node.position.x + this.node.width, this.node.position.y + shootNode.height/2 );
+        cc.log("shoot");
+    },
+    
 });
 module.exports = UnitSprite;

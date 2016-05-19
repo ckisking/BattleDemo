@@ -41,8 +41,18 @@ var AIState = cc.Enum({
     AI_BEHIT : -1,                //追击
 });
 
+//攻击方式枚举（连续攻击会改变攻击方式）
+var AttackMode = cc.Enum({
+    ATTACK_DEFAULT : 0,
+    ATTACK_1 : 1,
+    ATTACK_2 : 2,
+    ATTACK_3 : 3,
+    ATTACK_4 : 4,
+});
+
 module.exports = {
     Direction,
     ActionState,
-    AIState
+    AIState,
+    AttackMode
 };

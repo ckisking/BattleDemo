@@ -481,14 +481,11 @@
       "x": 0,
       "y": 0
     },
-    "floorNode": {
-      "__id__": 4
-    },
+    "_attackMode": 0,
     "shootNode": {
       "__uuid__": "963b947b-b3a2-4b4d-9415-a0b93f183527"
     },
-    "boneSpeed": 12,
-    "_attackMode": 0
+    "boneSpeed": 12
   },
   {
     "__type__": "cc.BoxCollider",
@@ -807,6 +804,7 @@
       "x": 0,
       "y": 0
     },
+    "_attackMode": 0,
     "moveDirection": {
       "__type__": "cc.Vec2",
       "x": 0,

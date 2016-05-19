@@ -31,9 +31,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        cc.director.getCollisionManager().enabled = true;
         this.collider = this.attackNode.getComponent("cc.BoxCollider");
-        this.anima = this.getComponent(cc.Animation); 
+        this.anim = this.getComponent(cc.Animation); 
     },
     start : function () {
         this.aiPatrolState = new AiPatrolState();
@@ -61,7 +60,7 @@ cc.Class({
             this.mCurState.execute(this);
             
             this.node.color = cc.Color.RED;
-            this.anima.play('1monster_behit');
+            this.anim.play('1monster_behit');
             var att = other.node.getComponent("ShootScript").attack;
             var hit = att - this.baseDefen;
             this.hp -= hit;
@@ -99,7 +98,7 @@ cc.Class({
     
     //被攻击后恢复正常状态
     onRecoverState : function () {
-        this.anima.play('1monster_stand');
+        this.anim.play('1monster_stand');
         this.node.color = cc.Color.WHITE;
         this.aiState = AIState.AI_NONE;
     },
@@ -129,7 +128,6 @@ cc.Class({
              anim.play(animName);
         }
     },
-    
     //巡逻时执行
     onPatrol : function () {
         var moveDirectionx = this.getRandomInt(-1, 2);
@@ -146,14 +144,12 @@ cc.Class({
         this.changeActionByState(AIState.AI_PATROL); 
         
     },
-    
     //待机时执行
     onIdel : function () {
         //改变状态，改变帧动画
         this.changeActionByState(AIState.AI_IDEL);
         this.moveDirection = cc.p(0,0);
     },
-    
     //追击时执行
     onPursuit : function () {
          this.changeActionByState(AIState.AI_PURSUIT);
@@ -161,7 +157,6 @@ cc.Class({
     getRandomInt : function (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     },
-    
     //攻击状态时执行
     onAttack : function () {
         var currentP= this.node.position;                      //当前坐标
@@ -173,7 +168,6 @@ cc.Class({
         }
         this.changeActionByState(AIState.AI_ATTACK);
     },
-    
     //被攻击状态时执行
     onHit : function () {
         this.aistate = AIState.AI_BEHIT;
@@ -192,7 +186,7 @@ cc.Class({
         }
     },
     
-     //简单状态机FSM
+     //AI状态机FSM
     decide : function (target, targetBodyWidth) {
         var self = this;
         var pos = this.node.position;    //脚下坐标
@@ -244,7 +238,7 @@ cc.Class({
         }
         this.mCurState.execute(this);
     },
-    // called every frame, uncomment this function to activate update callback
+    
     update: function (dt) {
          this.execute(  Hero.instance.node.position,  Hero.instance.node.width);
         if(this.aiState == AIState.AI_PATROL)
