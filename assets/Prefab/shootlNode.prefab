@@ -3,6 +3,7 @@
     "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
+    "_rawFiles": null,
     "data": {
       "__id__": 1
     }
@@ -120,7 +121,7 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 115,
+      "width": 88,
       "height": 45
     }
   },

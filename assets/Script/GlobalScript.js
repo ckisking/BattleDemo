@@ -23,7 +23,7 @@ var Direction  = cc.Enum({
 //角色状态枚举
 var ActionState = cc.Enum({
     ACTION_STATE_NONE : -1,                
-    ACTION_STATE_IDLE :-1,                 //状态
+    ACTION_STATE_IDLE :-1,                 //待机状态
     ACTION_STATE_WALK : -1,                //跑步状态
     ACTION_STATE_NOR_ATTACK : -1,          //普通攻击状态
     ACTION_STATE_SKILL_ATTACK : -1,        //技能攻击状态
@@ -38,6 +38,7 @@ var AIState = cc.Enum({
     AI_PATROL  : -1,                 //巡逻
     AI_ATTACK  : -1,                //攻击
     AI_PURSUIT : -1,                //追击
+    AI_BEHIT : -1,                //追击
 });
 
 module.exports = {

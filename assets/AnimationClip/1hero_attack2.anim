@@ -2,6 +2,7 @@
   "__type__": "cc.AnimationClip",
   "_name": "1hero_attack2",
   "_objFlags": 0,
+  "_rawFiles": null,
   "_duration": 1.1333333333333333,
   "sample": 15,
   "speed": 1,
@@ -135,6 +136,11 @@
     {
       "frame": 1.0666666666666667,
       "func": "heroAttackOver",
+      "params": []
+    },
+    {
+      "frame": 1.0666666666666667,
+      "func": "actionOver",
       "params": []
     }
   ]

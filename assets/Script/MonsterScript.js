@@ -6,41 +6,41 @@ var Hero = require('HeroScript');
 var AIState = require('GlobalScript').AIState; 
 
 var ActionState = require('GlobalScript').ActionState;
- 
+var Battle = require('BattleScript');
  //状态
 var AiPatrolState = require('AiPatrolState');
 var AiIdelState = require('AiIdelState');
 var AiAttackState = require('AiAttackState');
+var AiPursuitState = require('AiPursuitState');
+var AiBeHitState = require('AiBeHitState');
 
 cc.Class({
     extends: UnitSprite,
 
     properties: {
-        hitbloodLab : {             //怪物飘雪动画
-            default : null,
-            type : cc.Prefab
-        },
-        
-        spasticity : 0.5,             //僵值
         moveDirection : {             //行动方向
             default : new cc.Vec2()    
         },            
-        eyeArea : 400,                //警戒距离
-        attackArea : 200,             //攻击范围
+        eyeArea : 800,                //警戒距离
+        attackArea : 0,             //攻击范围
         aiState : 0,                  //AI状态
         nextDecisionTime : 0,          //延迟时间
+        whetherIdel : false,
         speed : new cc.Vec2(0,0)
     },
 
     // use this for initialization
     onLoad: function () {
         cc.director.getCollisionManager().enabled = true;
+        this.collider = this.attackNode.getComponent("cc.BoxCollider");
         this.anima = this.getComponent(cc.Animation); 
     },
     start : function () {
         this.aiPatrolState = new AiPatrolState();
         this.aiIdelState = new AiIdelState();
         this.aiAttackState = new AiAttackState();
+        this.aiPursuitState = new AiPursuitState();
+        this.aiBeHitState = new AiBeHitState();
         // this.changeState(this.aiIdelState); 
         this.aiState = AIState.AI_NONE;
     },
@@ -54,24 +54,25 @@ cc.Class({
     onCollisionEnter: function (other, self) {
         var otherGroup = other.node.group;
         var selfGroup = self.node.group;
+        cc.log(self._size);
         //被英雄攻击
         if(otherGroup == "heroAttack" && selfGroup == "monster"){
+            this.changeState(this.aiBeHitState); 
+            this.mCurState.execute(this);
+            
             this.node.color = cc.Color.RED;
             this.anima.play('1monster_behit');
-            this.unschedule(this.onRecoverState);
-            this.scheduleOnce(this.onRecoverState, this.spasticity);
-            
             var att = other.node.getComponent("ShootScript").attack;
             var hit = att - this.baseDefen;
             this.hp -= hit;
+            
             //扣血
             var bloodLabel = cc.instantiate(this.hitbloodLab);
-            bloodLabel.position = cc.p(0, this.node.height - 10);
-            bloodLabel.getComponent(cc.Label).string = "-" + hit;
-            bloodLabel.scaleX = -1;
-            this.node.addChild(bloodLabel);
+            bloodLabel.position = cc.p( this.node.position.x, this.node.position.y + this.node.height * this.node.scaleY + 20);
+            bloodLabel.getComponent(cc.Label).string = hit;
+            this.node.parent.addChild(bloodLabel);
             bloodLabel.active = true;
-            cc.log(other.node.group);  
+            
             //血量低于零时触发死亡函数
             if(this.hp <= 0){
                 this.onDead();
@@ -83,13 +84,24 @@ cc.Class({
     onCollisionExit: function (other, self) {
     },
     
-    
-    
+    //攻击开始判断
+    norAttackStart : function () {
+        this.collider.enabled  = true;  
+    },
+    //结束攻击判断
+    norAttackOver : function () {
+        this.collider.enabled  = false; 
+    },
+    //动作结束
+    actionOver : function () {
+        this.changeActionByState(AIState.AI_IDEL);
+    },
     
     //被攻击后恢复正常状态
     onRecoverState : function () {
         this.anima.play('1monster_stand');
         this.node.color = cc.Color.WHITE;
+        this.aiState = AIState.AI_NONE;
     },
     
     //死亡后触发
@@ -108,17 +120,13 @@ cc.Class({
         if(state == AIState.AI_IDEL){
             anim.play('1monster_stand');
         }
-        else if(state == AIState.AI_PATROL){
+        else if(state == AIState.AI_PATROL || state == AIState.AI_PURSUIT){
             anim.play('1monster_run');
         }
         else if(state == AIState.AI_ATTACK){
-            var animName = '1monster_attack' + this._attackMode;
+            var animName = '1monster_attack';
             this.nowHeroAction = animName;
              anim.play(animName);
-             this._attackMode += 1;
-             if(this._attackMode == AttackMode.ATTACK_4){
-                  this._attackMode = AttackMode.ATTACK_1;
-             }
         }
     },
     
@@ -130,9 +138,9 @@ cc.Class({
         this.moveDirection.y  =moveDirectiony  > 0 ? (moveDirectiony  +this.speed.y) : (moveDirectiony  -this.speed.y);
         this.nextDecisionTime =Math.random() * 100;
         if(moveDirectionx > 0){
-            this.node.scaleX = 1.8;
+            this.node.scaleX = Math.abs(this.node.scaleX);
         }else{
-            this.node.scaleX = -1.8;
+            this.node.scaleX = -Math.abs(this.node.scaleX);
         }
         //改变状态，改变帧动画
         this.changeActionByState(AIState.AI_PATROL); 
@@ -146,8 +154,31 @@ cc.Class({
         this.moveDirection = cc.p(0,0);
     },
     
+    //追击时执行
+    onPursuit : function () {
+         this.changeActionByState(AIState.AI_PURSUIT);
+    },
     getRandomInt : function (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
+    },
+    
+    //攻击状态时执行
+    onAttack : function () {
+        var currentP= this.node.position;                      //当前坐标
+        var heroPos = Hero.instance.node.position;             //英雄坐标
+        if(heroPos.x > currentP.x){
+            this.node.scaleX = Math.abs(this.node.scaleX);
+        }else{
+            this.node.scaleX = -Math.abs(this.node.scaleX);
+        }
+        this.changeActionByState(AIState.AI_ATTACK);
+    },
+    
+    //被攻击状态时执行
+    onHit : function () {
+        this.aistate = AIState.AI_BEHIT;
+        this.unschedule(this.onRecoverState);
+        this.scheduleOnce(this.onRecoverState, this.spasticity);
     },
     
     //AI判断
@@ -177,7 +208,7 @@ cc.Class({
         if(distance < self.eyeArea){
             aistate = (distance < self.attackArea) && (Math.abs(pos.y - target.y)) ? AIState.AI_ATTACK : AIState.AI_PURSUIT;
         }else{
-            aistate = Math.random() > 0.5 ? AIState.AI_PATROL : AIState.AI_IDEL;
+            aistate = (self.whetherIdel) && Math.random() > 0.5 ? AIState.AI_IDEL : AIState.AI_PATROL;
         }
         
         switch(aistate)
@@ -185,37 +216,37 @@ cc.Class({
             case AIState.AI_ATTACK:
             {
                 cc.log("攻击");
-                self.nextDecisionTime = 50;
+                this.moveDirection = cc.p(0,0);
+                this.changeState(this.aiAttackState); 
+                self.nextDecisionTime = Math.random() * 200;
             }
             break;
             case AIState.AI_IDEL:
             {
                 cc.log("待机");
                 this.changeState(this.aiIdelState); 
-                this.mCurState.execute(this);
                 self.nextDecisionTime = Math.random() * 100;
             }
             break;
             case AIState.AI_PATROL:
             {
-                cc.log("闲逛");
+                cc.log("巡逻");
                 this.changeState(this.aiPatrolState); 
-                this.mCurState.execute(this);
                 self.nextDecisionTime = Math.random() * 100;
             }
                 break;
             case AIState.AI_PURSUIT:
             {
                 cc.log("追击");
-                this.changeState(this.aiPatrolState); 
-                this.mCurState.execute(this);
-                 
+                this.changeState(this.aiPursuitState); 
             }
             break;
         }
+        this.mCurState.execute(this);
     },
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
+         this.execute(  Hero.instance.node.position,  Hero.instance.node.width);
         if(this.aiState == AIState.AI_PATROL)
         {
             var currentP= this.node.position;             //当前坐标
@@ -237,9 +268,15 @@ cc.Class({
         }
         else if(this.aiState == AIState.AI_PURSUIT)
         {
+            cc.log(this.getRandomInt(-0.5,0.6));
             var currentP= this.node.position;                      //当前坐标
-            var expectP = cc.pAdd(currentP , this.moveDirection);  //期望坐标
-            cc.log(Hero.instance.node.position);
+            var heroPos = cc.p(Hero.instance.node.position.x -Hero.instance.node.width/2 + Math.random()*Hero.instance.node.width, Hero.instance.node.position.y + Math.random()*Hero.instance.node.height);             //英雄坐标
+            var moveDirection= cc.pNormalize(cc.pSub(heroPos, currentP));   //获取单位向量
+            this.node.scaleX = moveDirection.x < 0 ? -Math.abs(this.node.scaleX) : Math.abs(this.node.scaleX);
+            moveDirection.x  = moveDirection.x > 0 ? (moveDirection.x +this.speed.x) : (moveDirection.x -this.speed.x);
+            moveDirection.y  = moveDirection.y > 0 ? (moveDirection.y +this.speed.y) : (moveDirection.y -this.speed.y);
+            var expectP = cc.pAdd(currentP , moveDirection);  //期望坐标
+            this.node.position = expectP;
         }
     },
 });

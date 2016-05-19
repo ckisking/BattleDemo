@@ -3,8 +3,8 @@
   "_name": "1monster_attack",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.7,
-  "sample": 10,
+  "_duration": 0.875,
+  "sample": 8,
   "speed": 1,
   "wrapMode": 1,
   "curveData": {
@@ -18,37 +18,37 @@
             }
           },
           {
-            "frame": 0.1,
+            "frame": 0.125,
             "value": {
               "__uuid__": "f0d3b7dd-4d35-4a89-b21b-a5815b61df15"
             }
           },
           {
-            "frame": 0.2,
+            "frame": 0.25,
             "value": {
               "__uuid__": "561c67a9-6027-401c-a254-64d5e8b8a835"
             }
           },
           {
-            "frame": 0.3,
+            "frame": 0.375,
             "value": {
               "__uuid__": "f01b2d18-5301-49ac-85e6-1f1042f7ff5e"
             }
           },
           {
-            "frame": 0.4,
+            "frame": 0.5,
             "value": {
               "__uuid__": "a3eaf859-f0ef-41e9-98a0-67b0cb2b4b45"
             }
           },
           {
-            "frame": 0.5,
+            "frame": 0.625,
             "value": {
               "__uuid__": "888065da-c022-496c-8989-bc1eb69a5842"
             }
           },
           {
-            "frame": 0.6,
+            "frame": 0.75,
             "value": {
               "__uuid__": "bd6669d2-c7d4-4522-ad2c-c5efa7482d41"
             }
@@ -57,5 +57,21 @@
       }
     }
   },
-  "events": []
+  "events": [
+    {
+      "frame": 0.375,
+      "func": "norAttackStart",
+      "params": []
+    },
+    {
+      "frame": 0.625,
+      "func": "norAttackOver",
+      "params": []
+    },
+    {
+      "frame": 0.875,
+      "func": "actionOver",
+      "params": []
+    }
+  ]
 }

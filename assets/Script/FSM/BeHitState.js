@@ -1,8 +1,8 @@
 /**
- * 普通攻击状态
+ * 被攻击状态
  */
 var ActionState = require('GlobalScript').ActionState;
-var NorAttackState = cc.Class({
+var BeHitState = cc.Class({
     extends:  cc.Component, 
 
     properties: () => ({
@@ -11,11 +11,11 @@ var NorAttackState = cc.Class({
     execute : function (unit) {
         //获取角色之前的状态
         var oldState = unit._actionState; 
-        //角色在任何情况下都能转化为攻击状态
+        //角色在攻击时无法被打断
         if(oldState != ActionState.ACTION_STATE_NOR_ATTACK){
-            unit.onNorAttack();
+            unit.onHit();   
         }
     },
     
 });
-module.exports = NorAttackState;
+module.exports = BeHitState;

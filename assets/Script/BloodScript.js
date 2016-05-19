@@ -1,10 +1,6 @@
 /**
  * 飘血动画控制
  */
-var bloodAction = {
-    move : cc.moveBy(0.5, cc.p(0, 30)),
-    hide : cc.fadeOut(0.5)
-}
 cc.Class({
     extends: cc.Component,
 
@@ -13,11 +9,9 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.node.runAction(cc.sequence(bloodAction.move, bloodAction.hide, cc.removeSelf()));
+        //飘血动作（加入随机延时，防止怪物一多所有血条叠加在一起）
+        var bloodAction = cc.spawn(cc.moveBy(1.0, cc.p(0, 200)), cc.fadeOut(1.0)); 
+        var delay = cc.delayTime(Math.random() * 0.1); 
+        this.node.runAction(cc.sequence(delay, bloodAction, cc.removeSelf())).easing(cc.easeIn(2.0));
     },
-
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });

@@ -3,7 +3,7 @@
  */
 var Monster = require('MonsterScript');
 var Hero = require('HeroScript');
-cc.Class({
+var Battle = cc.Class({
     extends: cc.Component,
 
     properties: {
@@ -13,8 +13,7 @@ cc.Class({
         },
     },
     statics : {
-        monsterArr   : [],           //弧度
-        m_hero : 10,                   //方向
+        monsterArr   : [],           //怪物数组
     }, 
     // use this for initialization
     onLoad: function () {
@@ -22,11 +21,10 @@ cc.Class({
         this.monster = cc.find("Canvas/BattleLayer/floorNode/monsterNode");
         this.monster.getComponent('MonsterScript').initMonster(cc.p(this.floorNode.width, this.floorNode.height));
         this.hero.getComponent('HeroScript').initHero(cc.p(this.floorNode.width, this.floorNode.height));
-        this.m_hero = 1;
     },
 
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
-        this.monster.getComponent('MonsterScript').execute( this.hero.position, this.hero.width);
+        // this.monster.getComponent('MonsterScript').execute( this.hero.position, this.hero.width);1
     },
 });

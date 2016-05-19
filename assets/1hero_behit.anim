@@ -1,12 +1,12 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "1monster_run",
+  "_name": "1hero_behit",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.1,
-  "sample": 10,
+  "_duration": 0.016666666666666666,
+  "sample": 60,
   "speed": 1,
-  "wrapMode": 2,
+  "wrapMode": 1,
   "curveData": {
     "comps": {
       "cc.Sprite": {
@@ -14,7 +14,7 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "40ae678d-6db4-46e9-af20-b25e2b853460"
+              "__uuid__": "a693726d-2042-4012-84bb-584d21643992"
             }
           }
         ]

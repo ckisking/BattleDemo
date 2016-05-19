@@ -12,8 +12,8 @@ var IdelState = cc.Class({
         //获取角色之前的状态
         var oldState = unit._actionState; 
         //角色在任何情况下都能转化为待机状态
-        if(oldState != ActionState.ACTION_STATE_IDLE ){
-            unit.changeActionByState(ActionState.ACTION_STATE_IDLE);
+        if(oldState != ActionState.ACTION_STATE_IDLE &&  oldState != ActionState.ACTION_STATE_BEHIT || oldState == ActionState.ACTION_STATE_NONE){
+            unit.onIdel();
         }
     },
     

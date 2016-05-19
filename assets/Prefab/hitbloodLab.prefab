@@ -25,12 +25,12 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 0
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 102.63,
-      "height": 63.16
+      "width": 160,
+      "height": 66.67
     },
     "_children": [],
     "_rotationX": 0,
@@ -73,14 +73,14 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_fontSize": 30,
+    "_fontSize": 50,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "949142dd-40d6-4716-a767-9835e08f5cee"
+      "__uuid__": "2b402128-d3ea-4ca0-8399-6dc38d3a54da"
     },
     "_isSystemFontUsed": false,
-    "_N$string": "-1200",
+    "_N$string": "1200",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$overflow": 0

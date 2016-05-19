@@ -4,15 +4,11 @@
       false,
       false,
       false,
+      false,
       false
     ],
     [
       false,
-      false,
-      true,
-      false
-    ],
-    [
       false,
       true,
       false,
@@ -20,16 +16,32 @@
     ],
     [
       false,
+      true,
       false,
       true,
-      true
+      false
+    ],
+    [
+      false,
+      false,
+      true,
+      true,
+      false
+    ],
+    [
+      false,
+      true,
+      false,
+      false,
+      false
     ]
   ],
   "group-list": [
     "default",
     "hero",
     "monster",
-    "heroAttack"
+    "heroAttack",
+    "monsterAttack"
   ],
   "start-scene": "3f99c3c9-2cf9-4b59-9661-d3ca6516a6fa"
 }

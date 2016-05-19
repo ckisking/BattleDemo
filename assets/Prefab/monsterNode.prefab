@@ -3,6 +3,7 @@
     "__type__": "cc.Prefab",
     "_name": "",
     "_objFlags": 0,
+    "_rawFiles": null,
     "data": {
       "__id__": 1
     }
@@ -23,23 +24,19 @@
     "_parent": null,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 0.5,
       "y": 0
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 180,
-      "height": 188
+      "width": 193,
+      "height": 191
     },
-    "_children": [
-      {
-        "__id__": 2
-      }
-    ],
+    "_children": [],
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": -1.8,
-    "_scaleY": 1.8,
+    "_scaleX": 1.5,
+    "_scaleY": 1.5,
     "_position": {
       "__type__": "cc.Vec2",
       "x": 1347,
@@ -56,124 +53,22 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 6
+        "__id__": 2
       },
-      {
-        "__id__": 7
-      },
-      {
-        "__id__": 8
-      },
-      {
-        "__id__": 9
-      }
-    ],
-    "_prefab": {
-      "__id__": 10
-    },
-    "groupIndex": 2
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "eyeCollider",
-    "_objFlags": 0,
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_parent": {
-      "__id__": 1
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_children": [],
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 90,
-      "y": 94
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_tag": -1,
-    "_opacityModifyRGB": false,
-    "_reorderChildDirty": false,
-    "_id": "",
-    "_active": true,
-    "_components": [
       {
         "__id__": 3
       },
       {
         "__id__": 4
+      },
+      {
+        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 6
     },
     "groupIndex": 2
-  },
-  {
-    "__type__": "cc.CircleCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_radius": 350
-  },
-  {
-    "__type__": "cc.Widget",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "isAlignOnce": false,
-    "_alignFlags": 18,
-    "_left": 90,
-    "_right": 90,
-    "_top": 94,
-    "_bottom": 94,
-    "_isAbsLeft": true,
-    "_isAbsRight": true,
-    "_isAbsTop": true,
-    "_isAbsBottom": true,
-    "_originalWidth": 0,
-    "_originalHeight": 0
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": null,
-    "fileId": "b76cc0cHOZJS6oht1lx51Lg"
   },
   {
     "__type__": "cc.Sprite",
@@ -184,10 +79,10 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "47230491-4cc3-4b8f-bd40-62255a356038"
+      "__uuid__": "f0d3b7dd-4d35-4a89-b21b-a5815b61df15"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -240,8 +135,8 @@
     "_enabled": true,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 96,
-      "y": 77
+      "x": -1,
+      "y": 79
     },
     "_size": {
       "__type__": "cc.Size",
@@ -257,14 +152,34 @@
       "__id__": 1
     },
     "_enabled": true,
-    "hp": 1000,
+    "hp": 800,
     "baseAtt": 0,
     "baseDefen": 0,
     "_actionState": 0,
+    "moveRange": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
     "hitbloodLab": {
       "__uuid__": "c7ed0687-458d-477e-87ec-372c5c265814"
     },
-    "spasticity": 0.5
+    "spasticity": 0.5,
+    "moveDirection": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "eyeArea": 800,
+    "attackArea": 200,
+    "aiState": 0,
+    "nextDecisionTime": 0,
+    "whetherIdel": true,
+    "speed": {
+      "__type__": "cc.Vec2",
+      "x": 4,
+      "y": 2
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

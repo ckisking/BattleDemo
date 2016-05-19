@@ -13,6 +13,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        cc.log(this.node.getComponent("cc.BoxCollider").size);
     },
     
     //初始化抛出物体
@@ -21,6 +22,8 @@ cc.Class({
         this.attack = attack;
         this.attackCount = attackCount;
         this.attackMode = attackMode;
+        this.node.getComponent("cc.BoxCollider").size.width = this.node.width;
+        this.node.getComponent("cc.BoxCollider").size.height = this.node.height;
         if(attackMode === 0){
             this.unscheudleUpdate();
         }

@@ -124,6 +124,11 @@ cc.Class({
     },
     
     Z: function (self) {
-        self.pause = true;  
+        if(self.pause){
+            self.pause = false;
+        }
+        else{
+            self.pause = true;    
+        } 
     },
 });
