@@ -24,6 +24,19 @@ cc.Class({
         this.attackMode = attackMode;
         this.node.getComponent("cc.BoxCollider").size.width = this.node.width;
         this.node.getComponent("cc.BoxCollider").size.height = this.node.height;
+        var self = this;
+        
+    //    cc.loader.loadRes("2hero/atlas", function (err, atlas) {
+    //        if(err){
+    //            cc.log(err);
+    //            return;
+    //        }
+    //        var frame = atlas.getSpriteFrame('sheep_run_0.png');
+    //        self.node.getComponent(cc.Sprite).spriteFrame = frame;
+    //     });
+     cc.loader.loadRes("2hero/2hero_1", cc.SpriteAtlas, function (err, atlas) {
+            self.node.getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame('bullet1.png');
+        });
         if(attackMode === 0){
             this.unscheudleUpdate();
         }

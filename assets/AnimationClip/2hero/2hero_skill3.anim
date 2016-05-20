@@ -1,0 +1,70 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "2hero_skill3",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.7,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "effect1": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": []
+          }
+        }
+      }
+    },
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "a9302252-e8cb-4b5b-92d7-34022ab7003b"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "03296557-b44a-4124-951a-97e3d0a3f7a9"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "7df44427-4c68-4a40-bb77-5d5a95280d2b"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "0f686cf4-5a06-4193-9dee-f51d447b4598"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "d83d21ec-6fec-40c6-b562-5b1cac052822"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "534e0926-7fdf-48b0-b83c-9ffc2447aaba"
+            }
+          },
+          {
+            "frame": 0.6,
+            "value": {
+              "__uuid__": "969bf26c-1e80-4608-a1c0-0daa36a5a1ca"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

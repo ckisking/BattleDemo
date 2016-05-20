@@ -9,6 +9,7 @@ var ActionState = require('GlobalScript').ActionState;
 var IdelState = require('IdelState');
 var WalkState = require('WalkState');
 var NorAttackState = require('NorAttackState');
+var BeHitState = require('BeHitState');
 
 var UnitSprite = cc.Class({
     extends: cc.Component,
@@ -40,7 +41,7 @@ var UnitSprite = cc.Class({
         this.mCurState = enstate; 
     },
     
-        //攻击发出抛出物（远程）
+    //攻击发出抛出物（远程）
     attackShoot : function () {
         var shootNode = cc.instantiate(this.shootNode);
         shootNode.parent = this.node.parent;

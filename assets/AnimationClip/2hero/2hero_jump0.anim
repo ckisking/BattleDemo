@@ -1,0 +1,61 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "2hero_jump0",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.7,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "26a749e9-5e80-4cc9-8319-654f390ac7cc"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "26a749e9-5e80-4cc9-8319-654f390ac7cc"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "26a749e9-5e80-4cc9-8319-654f390ac7cc"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "26a749e9-5e80-4cc9-8319-654f390ac7cc"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "da69d026-84f6-4a75-b8ec-217dc1f0828f"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "8f6d351d-4cd3-49fc-8ad8-5d43b42503d2"
+            }
+          },
+          {
+            "frame": 0.6,
+            "value": {
+              "__uuid__": "52179435-141d-4aaf-91cc-5b74a3a2a3b6"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

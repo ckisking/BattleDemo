@@ -18,38 +18,35 @@ cc.Class({
     extends: UnitSprite,
 
     properties: {
-        moveDirection : {             //行动方向
+        moveDirection : {                 //【行动方向】
             default : new cc.Vec2()    
         },            
-        eyeArea : 800,                //警戒距离
-        attackArea : 0,             //攻击范围
-        aiState : 0,                  //AI状态
-        nextDecisionTime : 0,          //延迟时间
-        whetherIdel : false,
-        speed : new cc.Vec2(0,0)
+        eyeArea : 800,                    //【警戒距离】
+        attackArea : 0,                   //【攻击范围】
+        aiState : 0,                      //【当前AI状态】
+        nextDecisionTime : 0,             //【AI检测延迟时间】
+        whetherIdel : false,              //【是否会待着不动】
+        speed : new cc.Vec2(0,0)          //【分为X/Y2个方向】
     },
 
-    // use this for initialization
     onLoad: function () {
         this.collider = this.attackNode.getComponent("cc.BoxCollider");
         this.anim = this.getComponent(cc.Animation); 
-    },
-    start : function () {
+        //初始化AI状态机
         this.aiPatrolState = new AiPatrolState();
         this.aiIdelState = new AiIdelState();
         this.aiAttackState = new AiAttackState();
         this.aiPursuitState = new AiPursuitState();
         this.aiBeHitState = new AiBeHitState();
-        // this.changeState(this.aiIdelState); 
         this.aiState = AIState.AI_NONE;
     },
     
     //初始化怪物属性
     initMonster : function (range) {
-      this.moveRange = range;
+        this.moveRange = range;
     },
     
-    //碰撞监测开始
+    //碰撞时触发
     onCollisionEnter: function (other, self) {
         var otherGroup = other.node.group;
         var selfGroup = self.node.group;
@@ -67,7 +64,7 @@ cc.Class({
             
             //扣血
             var bloodLabel = cc.instantiate(this.hitbloodLab);
-            bloodLabel.position = cc.p( this.node.position.x, this.node.position.y + this.node.height * this.node.scaleY + 20);
+            bloodLabel.position = cc.p( this.node.position.x, this.node.position.y + this.node.height * this.node.scaleY / 2);
             bloodLabel.getComponent(cc.Label).string = hit;
             this.node.parent.addChild(bloodLabel);
             bloodLabel.active = true;
@@ -78,20 +75,20 @@ cc.Class({
             }
         }
     },
-    
-    //碰撞监测结束
+ 
+    //之前处于碰撞状态，离开碰撞范围后触发
     onCollisionExit: function (other, self) {
     },
     
-    //攻击开始判断
+    //攻击开始判断【帧事件】
     norAttackStart : function () {
         this.collider.enabled  = true;  
     },
-    //结束攻击判断
+    //结束攻击判断【帧事件】
     norAttackOver : function () {
         this.collider.enabled  = false; 
     },
-    //动作结束
+    //动作结束【帧事件】
     actionOver : function () {
         this.changeActionByState(AIState.AI_IDEL);
     },
@@ -107,7 +104,7 @@ cc.Class({
     onDead : function () {
         this.node.runAction(cc.sequence(cc.blink(0.5, 4), cc.removeSelf(true)));
     },
-    //被销毁后执行
+    //被隐藏后执行
     onDisabled: function () {
         cc.director.getCollisionManager().enabledDebugDraw = false;
     },
@@ -135,18 +132,12 @@ cc.Class({
         this.moveDirection.x  = moveDirectionx > 0 ? (moveDirectionx  + this.speed.x) : (moveDirectionx  -this.speed.x);
         this.moveDirection.y  =moveDirectiony  > 0 ? (moveDirectiony  +this.speed.y) : (moveDirectiony  -this.speed.y);
         this.nextDecisionTime =Math.random() * 100;
-        if(moveDirectionx > 0){
-            this.node.scaleX = Math.abs(this.node.scaleX);
-        }else{
-            this.node.scaleX = -Math.abs(this.node.scaleX);
-        }
-        //改变状态，改变帧动画
+        this.node.scaleX = moveDirectionx > 0 ?  Math.abs(this.node.scaleX) : -Math.abs(this.node.scaleX);
         this.changeActionByState(AIState.AI_PATROL); 
         
     },
     //待机时执行
     onIdel : function () {
-        //改变状态，改变帧动画
         this.changeActionByState(AIState.AI_IDEL);
         this.moveDirection = cc.p(0,0);
     },
@@ -154,6 +145,7 @@ cc.Class({
     onPursuit : function () {
          this.changeActionByState(AIState.AI_PURSUIT);
     },
+    //获取随机数（min-max不包含max）
     getRandomInt : function (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     },
@@ -189,7 +181,7 @@ cc.Class({
      //AI状态机FSM
     decide : function (target, targetBodyWidth) {
         var self = this;
-        var pos = this.node.position;    //脚下坐标
+        var pos = this.node.position;    
         var distance = cc.pDistance(pos, target);
         distance = distance - targetBodyWidth/2;
         var isFlipedX;

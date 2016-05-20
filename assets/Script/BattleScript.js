@@ -17,7 +17,7 @@ var Battle = cc.Class({
     }, 
     // use this for initialization
     onLoad: function () {
-        this.hero = cc.find("Canvas/BattleLayer/floorNode/heroNode");
+        this.hero = cc.find("Canvas/BattleLayer/floorNode/heroPrefab");
         this.monster = cc.find("Canvas/BattleLayer/floorNode/monsterNode");
         this.monster.getComponent('MonsterScript').initMonster(cc.p(this.floorNode.width, this.floorNode.height));
         this.hero.getComponent('HeroScript').initHero(cc.p(this.floorNode.width, this.floorNode.height));
@@ -26,6 +26,15 @@ var Battle = cc.Class({
         cc.director.getCollisionManager().enabled = true;
         //开启显示碰撞框
         cc.director.getCollisionManager().enabledDebugDraw = true; 
+        
+        //加载图集
+        // cc.loader.loadResAll("2hero", cc.SpriteFrame, function (err, assets) {
+        //     if(err){
+        //           cc.log(err);
+        //      }
+        //      var count = assets.length;
+        //      cc.log("图片:" + count);
+        //     });
     },
 
     // called every frame, uncomment this function to activate update callback

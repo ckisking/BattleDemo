@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "2hero_skill6",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.57,
+  "sample": 7,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "a86e1140-7db4-4797-bc65-e5dd2b9e6bcb"
+            }
+          },
+          {
+            "frame": 0.14285714285714285,
+            "value": {
+              "__uuid__": "525c34f6-9051-44d9-adaa-a321f4c40676"
+            }
+          },
+          {
+            "frame": 0.2857142857142857,
+            "value": {
+              "__uuid__": "88abb624-c2af-4c48-abb3-f31b192e63ee"
+            }
+          },
+          {
+            "frame": 0.42857142857142855,
+            "value": {
+              "__uuid__": "4cacff7d-7d23-4711-bdd5-11eb83d2d81c"
+            }
+          }
+        ]
+      }
+    },
+    "paths": {
+      "effect1": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

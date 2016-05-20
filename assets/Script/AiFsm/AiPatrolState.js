@@ -12,8 +12,8 @@ var AiPatrolState = cc.Class({
     execute : function (unit) {
         //获取角色之前的状态
         var oldState = unit.aiState; 
-        //只要不是攻击状态就能转化为巡逻状态
-        if(oldState != AIState.AI_ATTACK){
+        //只要不是[攻击]、[被攻击]状态就能转化为巡逻状态
+        if(oldState != AIState.AI_ATTACK && oldState != AIState.AI_BEHIT){
             unit.onPatrol();
         }
     },

@@ -1,0 +1,211 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "2hero_skill8",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.6,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "8fb666a2-afa6-431a-bb04-2f8f72e823b7"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "86999138-cbb3-4081-9c2f-127a75f8b1f1"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "86999138-cbb3-4081-9c2f-127a75f8b1f1"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "86999138-cbb3-4081-9c2f-127a75f8b1f1"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "8119cdde-1acf-42e1-9e23-84fdd000a98a"
+            }
+          }
+        ]
+      }
+    },
+    "paths": {
+      "effect1": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "27de15f6-9192-42ee-94a9-f19abe157165"
+                }
+              },
+              {
+                "frame": 0.1,
+                "value": {
+                  "__uuid__": "380b43fd-b34e-4635-b40a-7b8816dd0194"
+                }
+              },
+              {
+                "frame": 0.4,
+                "value": {
+                  "__uuid__": "27de15f6-9192-42ee-94a9-f19abe157165"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                32,
+                137
+              ]
+            },
+            {
+              "frame": 0.1,
+              "value": [
+                74,
+                71
+              ]
+            },
+            {
+              "frame": 0.2,
+              "value": [
+                74,
+                71
+              ]
+            },
+            {
+              "frame": 0.3,
+              "value": [
+                74,
+                71
+              ]
+            },
+            {
+              "frame": 0.4,
+              "value": [
+                35,
+                115
+              ]
+            }
+          ],
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            }
+          ],
+          "active": [
+            {
+              "frame": 0,
+              "value": true
+            },
+            {
+              "frame": 0.5,
+              "value": false
+            }
+          ]
+        }
+      },
+      "effect2": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0.1,
+                "value": {
+                  "__uuid__": "47827924-49c4-4921-84ef-538d92f3de60"
+                }
+              },
+              {
+                "frame": 0.2,
+                "value": {
+                  "__uuid__": "de104665-f37e-4820-838c-5faaf939f120"
+                }
+              },
+              {
+                "frame": 0.3,
+                "value": {
+                  "__uuid__": "8b745e8b-9035-40b8-9596-c4dde0f5e89a"
+                }
+              },
+              {
+                "frame": 0.4,
+                "value": {
+                  "__uuid__": "381cec1c-518c-46d5-8256-304d3f2ad8fd"
+                }
+              },
+              {
+                "frame": 0.5,
+                "value": {
+                  "__uuid__": "66676300-3ad1-41d9-8007-f926633ded91"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "active": [
+            {
+              "frame": 0.1,
+              "value": true
+            },
+            {
+              "frame": 0.5,
+              "value": false
+            }
+          ],
+          "position": [
+            {
+              "frame": 0.1,
+              "value": [
+                190,
+                70
+              ]
+            }
+          ],
+          "scaleX": [
+            {
+              "frame": 0.1,
+              "value": 0.5
+            },
+            {
+              "frame": 0.5,
+              "value": 1
+            }
+          ],
+          "scaleY": [
+            {
+              "frame": 0.1,
+              "value": 0.5
+            },
+            {
+              "frame": 0.5,
+              "value": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

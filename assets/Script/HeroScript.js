@@ -10,6 +10,7 @@ var AttackMode = require('GlobalScript').AttackMode;
 //状态
 var IdelState = require('IdelState');
 var WalkState = require('WalkState');
+var RunState = require('RunState');
 var NorAttackState = require('NorAttackState');
 var BeHitState = require('BeHitState');
 
@@ -36,12 +37,7 @@ var Hero = cc.Class({
         //获取近战普通攻击碰撞框
         this.collider = this.attackNode.getComponent("cc.BoxCollider");
         this.anim = this.getComponent(cc.Animation);  
-        //初始化状态机
-        this.idelState = new IdelState();
-        this.walkState = new WalkState();
-        this.norAttackState = new NorAttackState();
-        this.beHitState = new BeHitState();
-        this.changeState(this.idelState); 
+       
         
         //测试（监听键盘事件）
         var self = this;
@@ -54,7 +50,15 @@ var Hero = cc.Class({
             }
         }, self); 
     },
-    
+    start : function () {
+         //初始动作化状态机
+        this.idelState = new IdelState();
+        this.walkState = new WalkState();
+        this.norAttackState = new NorAttackState();
+        this.beHitState = new BeHitState();
+        this.runState = new RunState();
+        this.changeState(this.idelState); 
+    },
     //初始化英雄属性
     initHero : function (range) {
         this.moveRange = range;
@@ -73,7 +77,7 @@ var Hero = cc.Class({
             this.hp -= hit;
             //扣血
             var bloodLabel = cc.instantiate(this.hitbloodLab);
-            bloodLabel.position = cc.p( this.node.position.x, this.node.position.y + this.node.height * this.node.scaleY + 20);
+            bloodLabel.position = cc.p( this.node.position.x, this.node.position.y + this.node.height * this.node.scaleY / 2);
             bloodLabel.getComponent(cc.Label).string = hit;
             this.node.parent.addChild(bloodLabel);
             bloodLabel.active = true;
@@ -99,12 +103,10 @@ var Hero = cc.Class({
     //根据方向判断是否改变状态
     changestateByDir : function (dir) {
         if (dir > 0) {
-            this.changeState(new WalkState()); 
-            this.mCurState.execute(this);
             this.onRun();
         }
         else if(dir === 0){
-           this.changeState(new IdelState()); 
+           this.changeState(this.idelState); 
            this.mCurState.execute(this);
         }
         if(dir > 1 && dir < 5){
@@ -121,6 +123,14 @@ var Hero = cc.Class({
         var dir =Rocker._direction;
         // 获取摇杆速度 (取值范围[0-1])
         var rockerSpeed = Rocker._speed;
+        if(rockerSpeed >=0.5){
+            this.changeState(this.runState); 
+            this.mCurState.execute(this);
+        }
+        else{
+            this.changeState(this.walkState); 
+            this.mCurState.execute(this);
+        }
         // 获取摇杆弧度
         var radians = Rocker._radians;
         var x = this.node.x;
@@ -175,29 +185,36 @@ var Hero = cc.Class({
     
     //待机状态时执行
     onIdel : function () {
-        this.anim.play('1hero_stand');
+        this.anim.play('2hero_stand0');
         this._actionState = ActionState.ACTION_STATE_IDLE;
     },
     //普通攻击状态时执行
     onNorAttack : function () {
-         var animName = '1hero_attack' + this._attackMode;
-         this.anim.play(animName);
-         this._attackMode += 1;
-         if(this._attackMode == AttackMode.ATTACK_4){
+         if(this._attackMode < AttackMode.ATTACK_4){
+             var animName = '2hero_attack' + 1;
+             this.anim.play(animName);
+         }else{
+             var animName = '2hero_attack' + 2;
+             this.anim.play(animName);
              this._attackMode = AttackMode.ATTACK_1;
          }
+         this._attackMode += 1;
          this._actionState = ActionState.ACTION_STATE_NOR_ATTACK;
     },
     //移动状态时执行
     onWalk : function () {
-         this.anim.play('1hero_run');
+         this.anim.play('2hero_walk');
          this._actionState = ActionState.ACTION_STATE_WALK;
     },
-
+    //奔跑状态时执行
+    onRunState : function () {
+        this.anim.play('2hero_run');
+         this._actionState = ActionState.ACTION_STATE_RUN;
+    },
     //被攻击状态时执行
     onHit : function () {
         this._actionState = ActionState.ACTION_STATE_BEHIT;
-        this.anim.play('1hero_behit');
+        this.anim.play('2hero_behit');
         this.node.color = cc.Color.RED;
         this.unschedule(this.onRecoverState);
         this.scheduleOnce(this.onRecoverState, this.spasticity);
@@ -208,12 +225,12 @@ var Hero = cc.Class({
     
     //普通按钮回调
     onNorAttackCall : function () {
-          this.changeState(this.norAttackState); 
+          this.changeState( this.norAttackState ); 
           this.mCurState.execute(this);
     },
     //被攻击后恢复正常状态
     onRecoverState : function () {
-        this.anim.play('1hero_stand');
+        this.anim.play('2hero_stand0');
         this.node.color = cc.Color.WHITE;
         this._actionState = ActionState.ACTION_STATE_IDLE;
     },
@@ -227,21 +244,7 @@ var Hero = cc.Class({
           this._attackMode = AttackMode.ATTACK_1;
     },
     
-    //攻击发出抛出物（远程）
-    attackShoot : function () {
-        var shootNode = cc.instantiate(this.shootNode);
-        shootNode.parent = this.node.parent;
-        var speed;
-        if(this.node.scaleX < 0){
-            speed = -15;
-        }
-        else{
-            speed = 15;
-        }
-        shootNode.getComponent("ShootScript").initShoot(speed, 25, 1, 1);
-        shootNode.position = cc.p(this.node.position.x + this.node.width, this.node.position.y + shootNode.height/2 );
-        cc.log("shoot");
-    },
+
     
     //帧事件近战攻击attack1，监测碰撞开启
     heroAttack1 : function () {

@@ -152,19 +152,21 @@
       "__id__": 1
     },
     "_enabled": true,
+    "attackNode": null,
+    "hitbloodLab": {
+      "__uuid__": "c7ed0687-458d-477e-87ec-372c5c265814"
+    },
     "hp": 800,
     "baseAtt": 0,
     "baseDefen": 0,
     "_actionState": 0,
+    "spasticity": 0.5,
     "moveRange": {
       "__type__": "cc.Vec2",
       "x": 0,
       "y": 0
     },
-    "hitbloodLab": {
-      "__uuid__": "c7ed0687-458d-477e-87ec-372c5c265814"
-    },
-    "spasticity": 0.5,
+    "_attackMode": 0,
     "moveDirection": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -186,7 +188,9 @@
     "root": {
       "__id__": 1
     },
-    "asset": null,
+    "asset": {
+      "__uuid__": "ec8492ea-80ae-4790-ae03-92f84f8244cd"
+    },
     "fileId": "b1cbd1c3Q1Ci64umL0k1Kxn"
   }
 ]
