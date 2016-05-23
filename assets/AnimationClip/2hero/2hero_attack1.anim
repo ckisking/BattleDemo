@@ -1,116 +1,103 @@
-[
-  {
-    "__type__": "cc.AnimationClip",
-    "_name": "2hero_attack1",
-    "_objFlags": 0,
-    "_rawFiles": null,
-    "_duration": 0.6,
-    "sample": 5,
-    "speed": 1,
-    "wrapMode": 1,
-    "curveData": {
-      "comps": {
-        "cc.Sprite": {
-          "spriteFrame": [
-            {
-              "frame": 0,
-              "value": {
-                "__uuid__": "4dec5d62-c8c4-44d5-946e-fe1a43091c3c"
-              }
-            },
-            {
-              "frame": 0.2,
-              "value": {
-                "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
-              }
-            },
-            {
-              "frame": 0.4,
-              "value": {
-                "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
-              }
-            }
-          ]
-        }
-      },
-      "paths": {
-        "effect1": {
-          "comps": {
-            "cc.Sprite": {
-              "spriteFrame": [
-                {
-                  "frame": 0.2,
-                  "value": {
-                    "__uuid__": "ec98c378-5c0d-4958-af0b-8c545e778297"
-                  }
-                },
-                {
-                  "frame": 0.4,
-                  "value": {
-                    "__id__": 1
-                  }
-                }
-              ]
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "2hero_attack1",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.8,
+  "sample": 5,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "4dec5d62-c8c4-44d5-946e-fe1a43091c3c"
             }
           },
-          "props": {
-            "active": [
-              {
-                "frame": 0,
-                "value": false
-              },
-              {
-                "frame": 0.2,
-                "value": true
-              },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
+            }
+          },
+          {
+            "frame": 0.6,
+            "value": {
+              "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
+            }
+          }
+        ]
+      }
+    },
+    "paths": {
+      "effect1": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
               {
                 "frame": 0.4,
-                "value": false
-              }
-            ],
-            "position": [
-              {
-                "frame": 0.2,
-                "value": [
-                  90,
-                  115
-                ]
-              }
-            ],
-            "rotation": [
-              {
-                "frame": 0,
-                "value": 0
+                "value": {
+                  "__uuid__": "ec98c378-5c0d-4958-af0b-8c545e778297"
+                }
               }
             ]
           }
+        },
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.4,
+              "value": true
+            },
+            {
+              "frame": 0.6,
+              "value": false
+            }
+          ],
+          "position": [
+            {
+              "frame": 0.4,
+              "value": [
+                90,
+                115
+              ]
+            }
+          ],
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            }
+          ]
         }
       }
-    },
-    "events": [
-      {
-        "frame": 0.2,
-        "func": "attackShoot",
-        "params": [
-          1,
-          0,
-          "xxxx",
-          10,
-          "5"
-        ]
-      },
-      {
-        "frame": 0.4,
-        "func": "actionOver",
-        "params": []
-      }
-    ]
-  },
-  {
-    "__type__": "cc.SpriteFrame",
-    "content": {
-      "name": "",
-      "atlas": ""
     }
-  }
-]
+  },
+  "events": [
+    {
+      "frame": 0.4,
+      "func": "attackShoot",
+      "params": [
+        1
+      ]
+    },
+    {
+      "frame": 0.6,
+      "func": "actionOver",
+      "params": []
+    }
+  ]
+}

@@ -23,39 +23,51 @@ var UnitSprite = cc.Class({
             default : null,
             type : cc.Prefab
         },
+        effect1 : {
+            default : null,
+            type : cc.Node
+        },
+        effect2 : {
+            default : null,
+            type : cc.Node
+        },
         hp : 0,                        //血量
         baseAtt : 0,                   //攻击
         baseDefen : 0,                 //防御
         _actionState : 0,              //动作状态
         spasticity : 0.5,             //僵值
         moveRange : new cc.Vec2(0,0),      //移动范围 
-        _attackMode : 0   //普通攻击模式    
+        _attackMode : 0,                  //普通攻击模式 
+        speed : new cc.Vec2(0,0)  
     },
 
     // use this for initialization
     onLoad: function () {
+        this.count = 0;
     },
     
     //改变状态机状态
-    changeState : function (enstate){
-        this.mCurState = enstate; 
+    changeState: function (enstate) {
+        this.mCurState = enstate;
     },
-    
+
     //攻击发出抛出物（远程）
-    attackShoot : function () {
+    attackShoot: function (count) {
+        if(typeof(count) != undefined){
+           this.schedule(this.onShoot, 0.05, count -1); 
+        } 
+    },
+
+    onShoot: function () {
         var shootNode = cc.instantiate(this.shootNode);
         shootNode.parent = this.node.parent;
-        var speed;
-        if(this.node.scaleX < 0){
-            speed = -15;
-        }
-        else{
-            speed = 15;
-        }
-        shootNode.getComponent("ShootScript").initShoot(speed, 25, 1, 1);
-        shootNode.position = cc.p(this.node.position.x + this.node.width, this.node.position.y + shootNode.height/2 );
+        shootNode.setLocalZOrder(this.node.getLocalZOrder() - 1);
+        var shootspeed = this.node.scaleX > 0 ? 15 : -15;
+        var worldpos = this.effect1.parent.convertToWorldSpace(this.effect1.position);
+        var pos = this.node.parent.convertToNodeSpace(worldpos);
+        shootNode.getComponent("ShootScript").initShoot(shootspeed, 25, 1, 1);
+        shootNode.position = pos;
         cc.log("shoot");
-    },
-    
+    }
 });
 module.exports = UnitSprite;

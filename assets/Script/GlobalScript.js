@@ -25,7 +25,8 @@ var ActionState = cc.Enum({
     ACTION_STATE_NONE : -1,                
     ACTION_STATE_IDLE :-1,                 //待机状态
     ACTION_STATE_WALK : -1,                //行走状态
-    ACTION_STATE_RUN : -1,              //行走状态
+    ACTION_STATE_RUN : -1,                 //跑动状态
+    ACTION_STATE_JUMP : -1,                //跳动状态
     ACTION_STATE_NOR_ATTACK : -1,          //普通攻击状态
     ACTION_STATE_SKILL_ATTACK : -1,        //技能攻击状态
     ACTION_STATE_BEHIT : -1,               //被攻击

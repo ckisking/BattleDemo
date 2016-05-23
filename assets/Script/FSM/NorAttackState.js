@@ -12,7 +12,7 @@ var NorAttackState = cc.Class({
         //获取角色之前的状态
         var oldState = unit._actionState; 
         //角色在任何情况下都能转化为攻击状态
-        if(oldState != ActionState.ACTION_STATE_NOR_ATTACK){
+        if(oldState != ActionState.ACTION_STATE_NOR_ATTACK && oldState != ActionState.ACTION_STATE_JUMP){
             unit.onNorAttack();
         }
     },

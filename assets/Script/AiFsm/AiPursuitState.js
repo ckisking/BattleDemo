@@ -2,7 +2,7 @@
  * AI追击状态
  */
 var AIState = require('GlobalScript').AIState; 
-var AiIdelState = cc.Class({
+var AiPursuittate = cc.Class({
     extends:  cc.Component, 
 
     properties: () => ({
@@ -18,4 +18,4 @@ var AiIdelState = cc.Class({
     },
     
 });
-module.exports = AiIdelState;
+module.exports = AiPursuittate;

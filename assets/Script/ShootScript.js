@@ -13,7 +13,6 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        cc.log(this.node.getComponent("cc.BoxCollider").size);
     },
     
     //初始化抛出物体
@@ -26,16 +25,8 @@ cc.Class({
         this.node.getComponent("cc.BoxCollider").size.height = this.node.height;
         var self = this;
         
-    //    cc.loader.loadRes("2hero/atlas", function (err, atlas) {
-    //        if(err){
-    //            cc.log(err);
-    //            return;
-    //        }
-    //        var frame = atlas.getSpriteFrame('sheep_run_0.png');
-    //        self.node.getComponent(cc.Sprite).spriteFrame = frame;
-    //     });
-     cc.loader.loadRes("2hero/2hero_1", cc.SpriteAtlas, function (err, atlas) {
-            self.node.getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame('bullet1.png');
+        cc.loader.loadRes("2hero/2hero_1", cc.SpriteAtlas, function (err, atlas) {
+            self.node.getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame('bullet0.png');
         });
         if(attackMode === 0){
             this.unscheudleUpdate();
@@ -58,7 +49,7 @@ cc.Class({
             return;
         }
         this.node.x += this.speed;
-        if(this.node.x >= cc.find("Canvas/BattleLayer/floorNode").width){
+        if(this.node.x >= cc.find("Canvas/BattleLayer/floorNode").width || this.node.x < 0){
             this.node.destroy();
         }
     },

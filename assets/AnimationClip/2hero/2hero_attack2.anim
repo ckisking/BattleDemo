@@ -50,6 +50,10 @@
           "active": [
             {
               "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.2,
               "value": true
             },
             {
@@ -87,7 +91,9 @@
     {
       "frame": 0.2,
       "func": "attackShoot",
-      "params": []
+      "params": [
+        2
+      ]
     },
     {
       "frame": 0.4,

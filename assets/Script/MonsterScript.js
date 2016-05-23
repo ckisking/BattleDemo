@@ -26,7 +26,6 @@ cc.Class({
         aiState : 0,                      //【当前AI状态】
         nextDecisionTime : 0,             //【AI检测延迟时间】
         whetherIdel : false,              //【是否会待着不动】
-        speed : new cc.Vec2(0,0)          //【分为X/Y2个方向】
     },
 
     onLoad: function () {
@@ -50,7 +49,7 @@ cc.Class({
     onCollisionEnter: function (other, self) {
         var otherGroup = other.node.group;
         var selfGroup = self.node.group;
-        cc.log(self._size);
+        // cc.log(self._size);
         //被英雄攻击
         if(otherGroup == "heroAttack" && selfGroup == "monster"){
             this.changeState(this.aiBeHitState); 
@@ -162,7 +161,7 @@ cc.Class({
     },
     //被攻击状态时执行
     onHit : function () {
-        this.aistate = AIState.AI_BEHIT;
+        this.aiState = AIState.AI_BEHIT;
         this.unschedule(this.onRecoverState);
         this.scheduleOnce(this.onRecoverState, this.spasticity);
     },
@@ -254,14 +253,24 @@ cc.Class({
         }
         else if(this.aiState == AIState.AI_PURSUIT)
         {
-            cc.log(this.getRandomInt(-0.5,0.6));
             var currentP= this.node.position;                      //当前坐标
             var heroPos = cc.p(Hero.instance.node.position.x -Hero.instance.node.width/2 + Math.random()*Hero.instance.node.width, Hero.instance.node.position.y + Math.random()*Hero.instance.node.height);             //英雄坐标
             var moveDirection= cc.pNormalize(cc.pSub(heroPos, currentP));   //获取单位向量
             this.node.scaleX = moveDirection.x < 0 ? -Math.abs(this.node.scaleX) : Math.abs(this.node.scaleX);
-            moveDirection.x  = moveDirection.x > 0 ? (moveDirection.x +this.speed.x) : (moveDirection.x -this.speed.x);
-            moveDirection.y  = moveDirection.y > 0 ? (moveDirection.y +this.speed.y) : (moveDirection.y -this.speed.y);
+            moveDirection = cc.pCompMult(moveDirection, this.speed);
             var expectP = cc.pAdd(currentP , moveDirection);  //期望坐标
+             if(expectP.x < this.node.width/2){
+                expectP.x = this.node.width/2;
+            }
+            if(expectP.x > this.moveRange.x - this.node.width/2){
+                expectP.x = this.moveRange.x - this.node.width/2;
+            }
+            if(expectP.y < 0){
+                expectP.y = 0;
+            }
+            if(expectP.y > this.moveRange.y){
+                 expectP.y = this.moveRange.y;
+             }
             this.node.position = expectP;
         }
     },

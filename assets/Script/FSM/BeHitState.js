@@ -12,7 +12,8 @@ var BeHitState = cc.Class({
         //获取角色之前的状态
         var oldState = unit._actionState; 
         //角色在攻击时无法被打断
-        if(oldState != ActionState.ACTION_STATE_NOR_ATTACK){
+        if(oldState != ActionState.ACTION_STATE_NOR_ATTACK && oldState != ActionState.ACTION_STATE_JUMP 
+        && oldState != ActionState.ACTION_STATE_SKILL_ATTACK){
             unit.onHit();   
         }
     },
