@@ -39,6 +39,8 @@ var UnitSprite = cc.Class({
             'default': null,
             type: cc.Prefab
         },
+        id : 1,  //id
+        type : 1,  //type:分为英雄（0）、怪物（1）
         hp: 0, //血量
         baseAtt: 0, //攻击
         baseDefen: 0, //防御
@@ -48,6 +50,7 @@ var UnitSprite = cc.Class({
         moveRange: new cc.Vec2(0, 0), //移动范围
         _attackMode: 0, //普通攻击模式
         speed: new cc.Vec2(0, 0) //速度
+        
     },
 
     // use this for initialization
@@ -88,14 +91,14 @@ var UnitSprite = cc.Class({
      */
     onShoot: function onShoot(pos, count) {
         var shootNode = cc.instantiate(this.shootNode);
-        // shootNode.group = 'monsterAttack';
+        shootNode.group =  this.type === 0 ? 'heroAttack' : 'monsterAttack';
         shootNode.parent = this.node.parent;
         shootNode.setLocalZOrder(this.node.getLocalZOrder() - 1);
         
         var shootpos;
         switch (pos) {
             case 1:
-                var worldpos = this.effect1.parent.convertToWorldSpace(this.effect1.position);
+                var worldpos = this.effect1.convertToWorldSpaceAR(cc.Vec2.ZERO);
                 shootpos = this.node.parent.convertToNodeSpace(worldpos);
                 break;
             case 2:
@@ -108,8 +111,10 @@ var UnitSprite = cc.Class({
             default:
                 break;
         }
-        shootNode.getComponent("ShootScript").initShoot(14, 25, 1, 1);
+        var res = this.type === 0 ? "heroshoot"+this.id : "m"+this.id;
+        shootNode.getComponent("ShootScript").initShoot(res, 25, 1, 1);
         shootNode.position = shootpos;
+        shootNode.scaleX = this.node.scaleX > 0 ? Math.abs(shootNode.scaleX) : -Math.abs(shootNode.scaleX);
         var shootRange = this.node.scaleX > 0 ? 1200 : -1200;
         var delay = cc.delayTime(count * 0.1);
         var callback = cc.callFunc(function () {

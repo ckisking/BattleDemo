@@ -22,6 +22,10 @@ var Battle = cc.Class({
         battleUi: {
             'default': null,
             type: cc.Node
+        },
+        hpBar : {
+            default : null,
+            type : cc.Sprite
         }
     },
     statics: {
@@ -40,13 +44,14 @@ var Battle = cc.Class({
         cc.director.getCollisionManager().enabledDebugDraw = true;
         this.winsize = cc.director.getWinSize();
         //加载图集
-        // cc.loader.loadResAll("2hero", cc.SpriteFrame, function (err, assets) {
-        //     if(err){
-        //           cc.log(err);
-        //      }
-        //      var count = assets.length;
-        //      cc.log("图片:" + count);
-        //     });
+        cc.loader.loadResAll("2hero", cc.SpriteFrame, function (err, assets) {
+            if(err){
+                  cc.log(err);
+             }
+             var count = assets.length;
+             cc.log("图片:" + count);
+            });
+            
         this.cdbtn[0].tag = 1;
         this.cdbtn[0].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
@@ -55,6 +60,10 @@ var Battle = cc.Class({
         this.cdbtn[1].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
         })
+        
+        var template1="我是{0}，今年{1}了";
+        var result1=template1.format("loogn",22);
+        cc.log(result1);
     },
 
     //动态添加按钮（技能）
@@ -103,6 +112,7 @@ var Battle = cc.Class({
     // called every frame, uncomment this function to activate update callback
     update: function update(dt) {
         this.screenRol();
+        this.hpBar.fillRange = Hero.instance.hp / 1000;
         // this.monster.getComponent('MonsterScript').execute( this.hero.position, this.hero.width);1
     }
 });

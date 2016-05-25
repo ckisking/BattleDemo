@@ -31,6 +31,7 @@ cc.Class({
     onLoad: function onLoad() {
         this.collider = this.attackNode.getComponent("cc.BoxCollider");
         this.anim = this.getComponent(cc.Animation);
+        this.type = 1;
         //初始化AI状态机
         this.aiPatrolState = new AiPatrolState();
         this.aiIdelState = new AiIdelState();
@@ -56,7 +57,7 @@ cc.Class({
             this.mCurState.execute(this);
 
             this.node.color = cc.Color.RED;
-            this.anim.play('m001_behit');
+            this.anim.play('m001_beHit');
             var att = other.node.getComponent("ShootScript").attack;
             var hit = att - this.baseDefen;
             this.hp -= hit;

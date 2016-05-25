@@ -38,7 +38,7 @@ var Hero = cc.Class({
         this.collider = this.attackNode.getComponent("cc.BoxCollider");
         //获取动画组件
         this.anim = this.getComponent(cc.Animation);
-
+        this.type = 0;
         //测试（监听键盘事件）
         var self = this;
         cc.eventManager.addListener({

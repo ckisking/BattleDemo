@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "m003_norAttack",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.5,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "4204d7ba-ad7b-4698-8b21-301669fa5508"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "279b5adf-0739-448a-b88d-5789abcdcd6e"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "1e78cf2b-fa53-4094-8a5d-cdad6334349a"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "085b17c4-42e1-4822-ad45-2d1822120222"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "a42c33af-622c-48d5-84ca-081f091e847c"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.4,
+      "func": "actionOver",
+      "params": []
+    }
+  ]
+}
