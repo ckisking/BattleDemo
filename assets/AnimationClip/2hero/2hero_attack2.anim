@@ -92,7 +92,9 @@
       "frame": 0.2,
       "func": "attackShoot",
       "params": [
-        2
+        1,
+        2,
+        false
       ]
     },
     {

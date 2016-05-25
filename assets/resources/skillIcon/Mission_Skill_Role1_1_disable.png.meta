@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "24da8871-f950-41be-a83a-5dc55de9c032",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Mission_Skill_Role1_1_disable": {
+      "ver": "1.0.3",
+      "uuid": "ed7ac1b2-3a91-4f10-bb56-7259dfae5781",
+      "rawTextureUuid": "24da8871-f950-41be-a83a-5dc55de9c032",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 86,
+      "height": 86,
+      "rawWidth": 86,
+      "rawHeight": 86,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,6 +1,7 @@
 {
-  "ver": "1.0.1",
+  "ver": "1.0.2",
   "uuid": "2b402128-d3ea-4ca0-8399-6dc38d3a54da",
   "textureUuid": "16e66707-4e58-4c1d-98e8-bb39ffeb4672",
+  "fontSize": 30,
   "subMetas": {}
 }

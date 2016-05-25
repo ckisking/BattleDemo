@@ -4,23 +4,31 @@
 var Monster = require('MonsterScript');
 var Hero = require('HeroScript');
 var Battle = cc.Class({
-    extends: cc.Component,
+    'extends': cc.Component,
 
     properties: {
-        floorNode: {          //[地板]
-            default: null,
+        floorNode: { //[地板]
+            'default': null,
             type: cc.Node
         },
         bgNode: {
-            default: null,
+            'default': null,
+            type: cc.Node
+        },
+        cdbtn: {
+            'default': [],
+            type: cc.Node
+        },
+        battleUi: {
+            'default': null,
             type: cc.Node
         }
     },
     statics: {
-        monsterArr: [],           //怪物数组
-    },
+        monsterArr: [] },
+    //怪物数组
     // use this for initialization
-    onLoad: function () {
+    onLoad: function onLoad() {
         this.hero = cc.find("Canvas/BattleLayer/floorNode/heroPrefab");
         this.monster = cc.find("Canvas/BattleLayer/floorNode/monsterNode");
         this.monster.getComponent('MonsterScript').initMonster(cc.p(this.floorNode.width, this.floorNode.height));
@@ -39,30 +47,53 @@ var Battle = cc.Class({
         //      var count = assets.length;
         //      cc.log("图片:" + count);
         //     });
+        this.cdbtn[0].tag = 1;
+        this.cdbtn[0].on("touchstart", (event)=>{
+               Hero.instance.onSkillCall(event.target.tag);
+        })
+        this.cdbtn[1].tag = 2;
+        this.cdbtn[1].on("touchstart", (event)=>{
+               Hero.instance.onSkillCall(event.target.tag);
+        })
+    },
+
+    //动态添加按钮（技能）
+    loadskillButton: function loadskillButton() {
+        var btn = cc.instantiate(this.cdbtn);
+        btn.getComponent('CdButton').initBtn(1001, 2, "image/skillicon/Mission_Skill_5_disable");
+        btn.position = cc.p(200, 100);
+        this.battleUi.addChild(btn);
+        btn.active = true;
     },
 
     //普通按钮回调
-    onNorAttackCall: function () {
+    onNorAttackCall: function onNorAttackCall() {
         Hero.onNorAttackCall();
     },
     //跳跃按钮回调
-    onJumpCall: function () {
+    onJumpCall: function onJumpCall() {},
+
+    //保存数据按钮(测试动态添加button)
+    onSaveCall: function onSaveCall() {
+        var node = cc.instantiate(new cc.Node("newNode"));
+        var commponent = node.addComponent(cc.Sprite);
+        component.spriteFrame = "";
     },
 
     //屏幕滚动
-    screenRol: function () {
+    screenRol: function screenRol() {
         var heroPos = Hero.instance.node.parent.convertToWorldSpace(Hero.instance.node.position);
         var bgNodePos = this.bgNode.position;
         var herospeedX = Hero.instance.speed.x;
+        var border = this.winsize.width - 2560;
         if (heroPos.x > this.winsize.width / 2 && herospeedX > 0) {
             bgNodePos.x -= Hero.instance.speed.x;
-            if(bgNodePos.x <= -1280){
-                bgNodePos.x = -1280;
+            if (bgNodePos.x <= border) {
+                bgNodePos.x = border;
             }
-        }
-        else if(heroPos.x < this.winsize.width / 2 && herospeedX < 0){
-             bgNodePos.x -= Hero.instance.speed.x;
-            if(bgNodePos.x >= 0){
+        } else if (heroPos.x < this.winsize.width / 2 && herospeedX < 0) {
+            bgNodePos.x -= Hero.instance.speed.x;
+            if (bgNodePos.x >= 0) {
                 bgNodePos.x = 0;
             }
         }
@@ -70,8 +101,8 @@ var Battle = cc.Class({
         this.floorNode.x = bgNodePos.x;
     },
     // called every frame, uncomment this function to activate update callback
-    update: function (dt) {
+    update: function update(dt) {
         this.screenRol();
         // this.monster.getComponent('MonsterScript').execute( this.hero.position, this.hero.width);1
-    },
+    }
 });
