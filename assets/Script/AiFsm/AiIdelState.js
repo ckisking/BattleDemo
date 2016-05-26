@@ -13,7 +13,8 @@ var AiIdelState = cc.Class({
         //获取角色之前的状态
         var oldState = unit.aiState; 
         //角色在不是[攻击]、[待机]、[被攻击]都能转化为待机状态
-        if(oldState !=  AIState.AI_IDEL && oldState != AIState.AI_ATTACK && oldState != AIState.AI_BEHIT){
+        if(oldState !=  AIState.AI_IDEL && oldState != AIState.AI_ATTACK 
+        && oldState != AIState.AI_BEHIT){
             unit.onIdel();
         }
     },

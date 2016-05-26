@@ -9,5 +9,5 @@
   "packageName": "org.cocos2d.BattleDemo",
   "startScene": "3f99c3c9-2cf9-4b59-9661-d3ca6516a6fa",
   "title": "BattleDemo",
-  "webOrientation": "auto"
+  "webOrientation": "landscape"
 }

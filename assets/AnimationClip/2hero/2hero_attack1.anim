@@ -3,8 +3,8 @@
   "_name": "2hero_attack1",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.8,
-  "sample": 5,
+  "_duration": 0.26666666666666666,
+  "sample": 15,
   "speed": 1,
   "wrapMode": 1,
   "curveData": {
@@ -18,19 +18,19 @@
             }
           },
           {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
+            }
+          },
+          {
             "frame": 0.2,
-            "value": {
-              "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
-            }
-          },
-          {
-            "frame": 0.4,
-            "value": {
-              "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
-            }
-          },
-          {
-            "frame": 0.6,
             "value": {
               "__uuid__": "6d198f6b-e31d-44da-8e5c-523dc5295f2a"
             }
@@ -44,7 +44,7 @@
           "cc.Sprite": {
             "spriteFrame": [
               {
-                "frame": 0.4,
+                "frame": 0.13333333333333333,
                 "value": {
                   "__uuid__": "ec98c378-5c0d-4958-af0b-8c545e778297"
                 }
@@ -59,17 +59,17 @@
               "value": false
             },
             {
-              "frame": 0.4,
+              "frame": 0.13333333333333333,
               "value": true
             },
             {
-              "frame": 0.6,
+              "frame": 0.2,
               "value": false
             }
           ],
           "position": [
             {
-              "frame": 0.4,
+              "frame": 0.13333333333333333,
               "value": [
                 90,
                 115
@@ -88,7 +88,7 @@
   },
   "events": [
     {
-      "frame": 0.4,
+      "frame": 0.13333333333333333,
       "func": "attackShoot",
       "params": [
         1,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "frame": 0.6,
+      "frame": 0.2,
       "func": "actionOver",
       "params": []
     }

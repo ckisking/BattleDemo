@@ -15,7 +15,7 @@ cc.Class({
     onLoad: function onLoad() {},
 
     //初始化抛出物体
-    initShoot: function initShoot(speed, attack, attackCount, attackMode) {
+    initShoot: function initShoot(res, attack, attackCount, attackMode) {
         this.speed = speed;
         this.attack = attack;
         this.attackCount = attackCount;
