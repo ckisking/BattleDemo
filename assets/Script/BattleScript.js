@@ -72,6 +72,10 @@ var Battle = cc.Class({
         this.cdbtn[2].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
         })
+        this.cdbtn[3].tag = 9;
+        this.cdbtn[3].on("touchstart", (event)=>{
+               Hero.instance.onSkillCall(event.target.tag);
+        })
         
         //格式化输出字符测试
         var template1="我是{0}，今年{1}了";

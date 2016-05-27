@@ -63,7 +63,7 @@ var UnitSprite = cc.Class({
         this.mCurState = enstate;
     },
 
-    //攻击发出抛出物（远程）count：发出个数，
+    //攻击发出抛出物（远程）count：发出个数，animation : 是否播放动画
     attackShoot: function attackShoot(pos, count, animation) {
         if(animation){
             
@@ -103,7 +103,7 @@ var UnitSprite = cc.Class({
                 break;
         }
         var res = this.type === 0 ? "2hero_skill8"+this.id : "m"+this.id;
-        shootNode.getComponent("ShootScript").initShoot("2hero_skill8", 25, 1, 1);
+        shootNode.getComponent("ShootScript").initShoot("bullet0", 25, 1, 1);
         shootNode.position = shootpos;
         shootNode.scaleX = this.node.scaleX > 0 ? Math.abs(shootNode.scaleX) : -Math.abs(shootNode.scaleX);
         var shootRange = this.node.scaleX > 0 ? 1200 : -1200;

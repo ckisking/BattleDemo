@@ -202,6 +202,12 @@
               "frame": 0.5,
               "value": 1
             }
+          ],
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            }
           ]
         }
       }
