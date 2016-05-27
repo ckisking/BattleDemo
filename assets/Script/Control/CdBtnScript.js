@@ -38,6 +38,7 @@ cc.Class({
             }
         });
     },
+    
     //技能冷却,根据speed来修改冷却的时间
     updateFillRange: function updateFillRange(dt) {
         var fillRange = this.cdBg.fillRange;
@@ -50,9 +51,4 @@ cc.Class({
         }
         this.cdBg.fillRange = fillRange;
     }
-
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });

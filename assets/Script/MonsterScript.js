@@ -29,8 +29,6 @@ cc.Class({
 
     //【是否会待着不动】
     onLoad: function onLoad() {
-        this.collider = this.attackNode.getComponent("cc.BoxCollider");
-        this.anim = this.getComponent(cc.Animation);
         this.type = 1;
         //初始化AI状态机
         this.aiPatrolState = new AiPatrolState();
@@ -39,6 +37,10 @@ cc.Class({
         this.aiPursuitState = new AiPursuitState();
         this.aiBeHitState = new AiBeHitState();
         this.aiState = AIState.AI_NONE;
+        //获取近战普通攻击碰撞框
+        this.collider = this.attackNode.getComponent("cc.BoxCollider");
+        //获取动画组件
+        this.anim = this.getComponent(cc.Animation);
     },
 
     //初始化怪物属性
@@ -61,17 +63,21 @@ cc.Class({
             var att = other.node.getComponent("ShootScript").attack;
             var hit = att - this.baseDefen;
             this.hp -= hit;
-
+            this.beHitCount += 1;
             //扣血
             var bloodLabel = cc.instantiate(this.hitbloodLab);
             bloodLabel.position = cc.p(this.node.position.x, this.node.position.y + this.node.height * this.node.scaleY / 2);
             bloodLabel.getComponent(cc.Label).string = hit;
             this.node.parent.addChild(bloodLabel);
             bloodLabel.active = true;
-
+            
+            this.node.x = this.node.scaleX > 0 ?  this.node.x - 10 : this.node.x + 10;
             //血量低于零时触发死亡函数
             if (this.hp <= 0) {
                 this.onDead();
+            }
+            if( this.beHitCount >=5){
+                
             }
         }
     },
@@ -258,6 +264,7 @@ cc.Class({
                 actualP.y = this.moveRange.y;
             }
             this.node.position = actualP;
+            this.node.setLocalZOrder(-actualP.y);
         } else if (this.aiState == AIState.AI_PURSUIT) {
             var currentP = this.node.position; //当前坐标
             var heroPos = cc.p(Hero.instance.node.position.x - Hero.instance.node.width / 2 + Math.random() * Hero.instance.node.width, Hero.instance.node.position.y + Math.random() * Hero.instance.node.height); //英雄坐标
@@ -278,6 +285,7 @@ cc.Class({
                 expectP.y = this.moveRange.y;
             }
             this.node.position = expectP;
+            this.node.setLocalZOrder(-expectP.y);
         }
     }
 });

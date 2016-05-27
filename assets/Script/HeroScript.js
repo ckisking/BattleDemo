@@ -60,9 +60,9 @@ var Hero = cc.Class({
         this.runState = new RunState();
         this.jumpState = new JumpState();
         this.changeState(this.idelState);
-
         //连击数
         this.combo = 0;
+        this.skillid = 0;
     },
     //初始化英雄属性
     initHero: function initHero(range) {
@@ -189,6 +189,7 @@ var Hero = cc.Class({
         } else if (y >= this.moveRange.y) {
             y = this.moveRange.y;
         }
+        this.node.setLocalZOrder(-y);
         this.node.position = cc.p(x, y);
     },
 
@@ -212,7 +213,7 @@ var Hero = cc.Class({
     },
     //技能攻击状态时执行
     onSkillState: function onSkillState() {
-        this.anim.play('2hero_skill1');
+        this.anim.play( this.skillid );
         this._actionState = ActionState.ACTION_STATE_SKILL_ATTACK;
     },
     //移动状态时执行
@@ -231,9 +232,9 @@ var Hero = cc.Class({
         this._actionState = ActionState.ACTION_STATE_JUMP;
         this.speed.y = this.jumpSpeed;
         if (Rocker._direction > 1 && Rocker._direction < 5) {
-            this.speed.x = 5;
+            this.speed.x = 8;
         } else if (Rocker._direction > 5 && Rocker._direction < 9) {
-            this.speed.x = -5;
+            this.speed.x = -8;
         }
         this.prePos.y = this.node.y;
     },
@@ -261,7 +262,8 @@ var Hero = cc.Class({
     },
     //技能攻击回调
     onSkillCall: function onSkillCall(skillid) {
-        cc.log(skillid);
+        this.skillid = "2hero_skill" + skillid;
+        cc.log(this.skillid);
         this.changeState(this.skillState);
         this.mCurState.execute(this);
     },
@@ -273,7 +275,10 @@ var Hero = cc.Class({
     },
     //死亡后触发
     onDead: function onDead() {
-        this.node.runAction(cc.sequence(cc.blink(0.5, 4), cc.removeSelf(true)));
+        //this.node.runAction(cc.sequence(cc.blink(0.5, 4), cc.removeSelf(true)));
+        //this.anim.play();
+        var detail = "我死啦！！";
+       cc.find("Canvas/Control").emit( "TARGET", detail);
     },
 
     //改变攻击方式（延迟执行)
@@ -282,11 +287,11 @@ var Hero = cc.Class({
     },
 
     //帧事件近战攻击attack1，监测碰撞开启
-    heroAttack1: function heroAttack1() {
+    meleeAttack: function meleeAttack() {
         this.collider.enabled = true;
     },
-    //攻击结束，监测碰撞关闭
-    heroAttackOver: function heroAttackOver() {
+    //近战攻击结束，监测碰撞关闭
+    meleeAttackOver: function meleeAttackOver() {
         this.collider.enabled = false;
     },
     //动作结束后触发回调

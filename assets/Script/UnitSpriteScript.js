@@ -47,6 +47,7 @@ var UnitSprite = cc.Class({
         _actionState: 0, //动作状态
         hitSpasticity: 0.5, //受击僵值
         actionSpasticity: 0.5, //动作僵值
+        beHitCount : 0,      //受击数
         moveRange: new cc.Vec2(0, 0), //移动范围
         _attackMode: 0, //普通攻击模式
         speed: new cc.Vec2(0, 0) //速度
@@ -74,16 +75,6 @@ var UnitSprite = cc.Class({
         }
     },
 
-    //帧事件近战攻击attack1，监测碰撞开启
-    meleeAttack: function meleeAttack() {
-        this.collider.enabled = true;
-    },
-    //近战攻击结束，监测碰撞关闭
-    meleeAttackOver: function meleeAttackOver() {
-        this.collider.enabled = false;
-        this.unschedule(this.changeAttackMode);
-        this.scheduleOnce(this.changeAttackMode, 10);
-    },
     /**
      * 远程攻击
      * 攻击模式（普通射击、2：技能
@@ -111,8 +102,8 @@ var UnitSprite = cc.Class({
             default:
                 break;
         }
-        var res = this.type === 0 ? "heroshoot"+this.id : "m"+this.id;
-        shootNode.getComponent("ShootScript").initShoot(res, 25, 1, 1);
+        var res = this.type === 0 ? "2hero_skill8"+this.id : "m"+this.id;
+        shootNode.getComponent("ShootScript").initShoot("2hero_skill8", 25, 1, 1);
         shootNode.position = shootpos;
         shootNode.scaleX = this.node.scaleX > 0 ? Math.abs(shootNode.scaleX) : -Math.abs(shootNode.scaleX);
         var shootRange = this.node.scaleX > 0 ? 1200 : -1200;

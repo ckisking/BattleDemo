@@ -207,5 +207,20 @@
       }
     }
   },
-  "events": []
+  "events": [
+    {
+      "frame": 0.1,
+      "func": "attackShoot",
+      "params": [
+        2,
+        1,
+        false
+      ]
+    },
+    {
+      "frame": 0.5,
+      "func": "actionOver",
+      "params": []
+    }
+  ]
 }

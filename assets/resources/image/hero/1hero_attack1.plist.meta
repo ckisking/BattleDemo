@@ -1,7 +1,6 @@
 {
-  "ver": "1.2.2",
+  "ver": "1.2.4",
   "uuid": "ed3466a8-8851-43b4-a39d-9542bd61cbd7",
-  "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
   "size": {
     "width": 1024,
     "height": 1024
@@ -11,7 +10,6 @@
     "S064_attacks_10.png": {
       "ver": "1.0.3",
       "uuid": "3c43bd93-7414-43f9-85fb-28e0ad512c0d",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -33,7 +31,6 @@
     "S064_attacks_11.png": {
       "ver": "1.0.3",
       "uuid": "ff84bbad-bfe5-41ae-84ff-10a403ea6691",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -55,7 +52,6 @@
     "S064_attacks_110.png": {
       "ver": "1.0.3",
       "uuid": "c3fb0c82-41c8-453a-b6ac-74d8b5a15a71",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -77,7 +73,6 @@
     "S064_attacks_111.png": {
       "ver": "1.0.3",
       "uuid": "60d0456c-8593-402c-893f-b28f613f2e89",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -99,7 +94,6 @@
     "S064_attacks_112.png": {
       "ver": "1.0.3",
       "uuid": "b89a9050-7f08-4055-bbe7-cfcfddabb8ba",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -121,7 +115,6 @@
     "S064_attacks_113.png": {
       "ver": "1.0.3",
       "uuid": "80e467d3-9cc9-4c38-8222-076c80297bb8",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -143,7 +136,6 @@
     "S064_attacks_114.png": {
       "ver": "1.0.3",
       "uuid": "7cff28e5-f2d6-48f3-84f6-ebdbf6307634",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -165,7 +157,6 @@
     "S064_attacks_115.png": {
       "ver": "1.0.3",
       "uuid": "076f82a9-1e79-4ae1-90e6-cd77ce9a16d2",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -187,7 +178,6 @@
     "S064_attacks_116.png": {
       "ver": "1.0.3",
       "uuid": "261d39e5-68e8-4ddb-89ea-eb57127aebaf",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -209,7 +199,6 @@
     "S064_attacks_117.png": {
       "ver": "1.0.3",
       "uuid": "07d95dd1-226e-42db-9736-bdcc73345eb6",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -231,7 +220,6 @@
     "S064_attacks_118.png": {
       "ver": "1.0.3",
       "uuid": "cb977c09-4a19-4a6c-93b8-4f3d7d0d1794",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -253,7 +241,6 @@
     "S064_attacks_119.png": {
       "ver": "1.0.3",
       "uuid": "97d46570-83f9-440e-91c0-b4e365d2a4a6",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -275,7 +262,6 @@
     "S064_attacks_12.png": {
       "ver": "1.0.3",
       "uuid": "d8be9842-a0b2-4814-807a-aa45f5dcb136",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -297,7 +283,6 @@
     "S064_attacks_120.png": {
       "ver": "1.0.3",
       "uuid": "4fe81bc1-7e1c-4f90-afc3-dad00e0d2b3d",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -319,7 +304,6 @@
     "S064_attacks_121.png": {
       "ver": "1.0.3",
       "uuid": "cc6ebb08-8f4c-4034-b8a9-219ec7bab4e4",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -341,7 +325,6 @@
     "S064_attacks_13.png": {
       "ver": "1.0.3",
       "uuid": "eff140fd-0282-4ffc-b58e-f797bb40f97e",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -363,7 +346,6 @@
     "S064_attacks_14.png": {
       "ver": "1.0.3",
       "uuid": "abef5f61-5bad-4a90-bbbb-f9abb9753f76",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -385,7 +367,6 @@
     "S064_attacks_15.png": {
       "ver": "1.0.3",
       "uuid": "fde600fa-71de-4a5f-badc-b7ae8f12e1dc",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -407,7 +388,6 @@
     "S064_attacks_16.png": {
       "ver": "1.0.3",
       "uuid": "83ec97f4-1c68-4c4b-b673-1bdab285229d",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -429,7 +409,6 @@
     "S064_attacks_17.png": {
       "ver": "1.0.3",
       "uuid": "94794ef9-d442-4060-9d35-e89dbb054ab2",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -451,7 +430,6 @@
     "S064_attacks_18.png": {
       "ver": "1.0.3",
       "uuid": "ce91e109-a23f-4e68-8b03-1d8a17a8af2e",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -473,7 +451,6 @@
     "S064_attacks_19.png": {
       "ver": "1.0.3",
       "uuid": "2e5a8d73-045e-48ef-8bb1-36ec55221907",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -495,7 +472,6 @@
     "S064_attacks_21.png": {
       "ver": "1.0.3",
       "uuid": "9414c6ad-2fb6-45c0-94b5-103928fa0fb2",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -517,7 +493,6 @@
     "S064_attacks_22.png": {
       "ver": "1.0.3",
       "uuid": "9bc236fb-be59-457e-85c6-ea13ca275401",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -539,7 +514,6 @@
     "S064_attacks_23.png": {
       "ver": "1.0.3",
       "uuid": "a7e4177e-7be1-466c-a55e-a1bfcdf408f6",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -561,7 +535,6 @@
     "S064_attacks_24.png": {
       "ver": "1.0.3",
       "uuid": "2dfb7cc2-1d8f-46a9-8d60-667f3b8a05ef",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -583,7 +556,6 @@
     "S064_attacks_25.png": {
       "ver": "1.0.3",
       "uuid": "ccc48e03-1bc2-4dec-a3f9-8e1f5ea76e1e",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -605,7 +577,6 @@
     "S064_attacks_26.png": {
       "ver": "1.0.3",
       "uuid": "e657be8e-0939-4576-b195-c196157df1f6",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -627,7 +598,6 @@
     "S064_attacks_27.png": {
       "ver": "1.0.3",
       "uuid": "3660ae7f-60b4-4f1f-870f-c6b50c5025ec",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -649,7 +619,6 @@
     "S064_attacks_28.png": {
       "ver": "1.0.3",
       "uuid": "8d33fbed-07a4-42fa-9f95-efc11c8fe0a9",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": true,
@@ -671,7 +640,6 @@
     "S064_attacks_dingwei.png": {
       "ver": "1.0.3",
       "uuid": "f33ea55b-5e6e-431f-93ae-a0f36ad35880",
-      "rawTextureUuid": "ac7f47dc-d994-4e31-a554-7a5419c13dcc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

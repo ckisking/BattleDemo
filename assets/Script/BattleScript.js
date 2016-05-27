@@ -26,6 +26,14 @@ var Battle = cc.Class({
         hpBar : {
             default : null,
             type : cc.Sprite
+        },
+        monsterNode : {
+            default : null,
+            type : cc.Prefab
+        },
+        shootNode : {
+            default : null,
+            type : cc.Prefab
         }
     },
     statics: {
@@ -56,16 +64,32 @@ var Battle = cc.Class({
         this.cdbtn[0].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
         })
-        this.cdbtn[1].tag = 2;
+        this.cdbtn[1].tag = 3;
         this.cdbtn[1].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
         })
+        this.cdbtn[2].tag = 8;
+        this.cdbtn[2].on("touchstart", (event)=>{
+               Hero.instance.onSkillCall(event.target.tag);
+        })
         
+        //格式化输出字符测试
         var template1="我是{0}，今年{1}了";
         var result1=template1.format("loogn",22);
         cc.log(result1);
+        window.myType = "TARGET";
+        this.node.on("TARGET", function(event){
+            cc.log(event.detail);
+        },this);
+        
     },
-
+    
+    //测试
+    createNode : function (){
+        // this.enabled = false;
+        cc.director.getScheduler().pauseAllTargets();
+    },
+    
     //动态添加按钮（技能）
     loadskillButton: function loadskillButton() {
         var btn = cc.instantiate(this.cdbtn);

@@ -173,6 +173,19 @@
                 <key>sourceSize</key>
                 <string>{122,133}</string>
             </dict>
+            <key>2hero_down.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{145,306},{124,63}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{124,63}}</string>
+                <key>sourceSize</key>
+                <string>{124,63}</string>
+            </dict>
             <key>2hero_jumpatt0.png</key>
             <dict>
                 <key>frame</key>
@@ -202,7 +215,7 @@
             <key>2hero_jumpatt2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{207,405},{90,102}}</string>
+                <string>{{210,405},{90,102}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -212,14 +225,27 @@
                 <key>sourceSize</key>
                 <string>{90,102}</string>
             </dict>
-            <key>42.png</key>
+            <key>2hero_skill8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{145,306},{120,60}}</string>
+                <string>{{211,848},{146,81}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{146,81}}</string>
+                <key>sourceSize</key>
+                <string>{146,81}</string>
+            </dict>
+            <key>42.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{544,948},{120,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{120,60}}</string>
                 <key>sourceSize</key>
@@ -354,19 +380,6 @@
                 <string>{{0,0},{128,79}}</string>
                 <key>sourceSize</key>
                 <string>{128,79}</string>
-            </dict>
-            <key>bullet4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{211,848},{146,81}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{146,81}}</string>
-                <key>sourceSize</key>
-                <string>{146,81}</string>
             </dict>
             <key>bullet5.png</key>
             <dict>
@@ -599,7 +612,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:51dea5b37bf696a784f8bb9e245e50b8:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:8190736ce64188e6f99f8b512cdd5a40:1/1$</string>
             <key>textureFileName</key>
             <string>2hero_1.png</string>
         </dict>

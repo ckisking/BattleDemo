@@ -106,23 +106,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "b8eea7e1-3d94-4723-b111-dda3998629b0"
-    },
-    "_clips": [
-      {
-        "__uuid__": "b8eea7e1-3d94-4723-b111-dda3998629b0"
-      },
-      {
-        "__uuid__": "b7e34a5b-b1e1-4612-b811-1c34ad17dccf"
-      },
-      {
-        "__uuid__": "3e26a9ba-4564-497a-8c20-8d0966e23d1d"
-      },
-      {
-        "__uuid__": "12a25bc6-62cf-4e71-a407-474a8242f77f"
-      }
-    ],
+    "_defaultClip": null,
+    "_clips": [],
     "playOnLoad": true
   },
   {
@@ -133,6 +118,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",
       "x": -1,
@@ -156,17 +142,30 @@
     "hitbloodLab": {
       "__uuid__": "c7ed0687-458d-477e-87ec-372c5c265814"
     },
+    "effect1": null,
+    "effect2": null,
+    "animapre": null,
+    "shootNode": null,
+    "id": 1,
+    "type": 1,
     "hp": 800,
     "baseAtt": 0,
     "baseDefen": 0,
     "_actionState": 0,
-    "spasticity": 0.5,
+    "hitSpasticity": 0.5,
+    "actionSpasticity": 0.5,
+    "beHitCount": 0,
     "moveRange": {
       "__type__": "cc.Vec2",
       "x": 0,
       "y": 0
     },
     "_attackMode": 0,
+    "speed": {
+      "__type__": "cc.Vec2",
+      "x": 4,
+      "y": 2
+    },
     "moveDirection": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -176,12 +175,7 @@
     "attackArea": 200,
     "aiState": 0,
     "nextDecisionTime": 0,
-    "whetherIdel": true,
-    "speed": {
-      "__type__": "cc.Vec2",
-      "x": 4,
-      "y": 2
-    }
+    "whetherIdel": true
   },
   {
     "__type__": "cc.PrefabInfo",
