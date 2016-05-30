@@ -2,7 +2,7 @@
  * 主角或者怪物抛出物体控制脚本
  */
 cc.Class({
-    "extends": cc.Component,
+    extends : cc.Component,
 
     properties: {
         attack: 0, //攻击力
@@ -11,10 +11,10 @@ cc.Class({
 
     //攻击模式（普通0、子弹1、持续性魔法2）
     // use this for initialization
-    onLoad: function onLoad() {},
+    onLoad: function () {},
 
     //初始化抛出物体
-    initShoot: function initShoot(res, attack, attackCount, attackMode) {
+    initShoot: function (res, attack, attackCount, attackMode) {
         this.attack = attack;
         this.attackCount = attackCount;
         this.attackMode = attackMode;
@@ -27,7 +27,7 @@ cc.Class({
         });
     },
 
-    onCollisionEnter: function onCollisionEnter(other, self) {
+    onCollisionEnter: function (other, self) {
         if (this.attackMode == 0) {
             return;
         }

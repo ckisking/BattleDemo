@@ -12,31 +12,31 @@ var NorAttackState = require('NorAttackState');
 var BeHitState = require('BeHitState');
 
 var UnitSprite = cc.Class({
-    'extends': cc.Component,
+    extends : cc.Component,
 
     properties: {
         attackNode: { // [近战攻击碰撞框]
-            'default': null,
+            default: null,
             type: cc.Node
         },
         hitbloodLab: { //飘血动画
-            'default': null,
+            default: null,
             type: cc.Prefab
         },
         effect1: {
-            'default': null,
+            default: null,
             type: cc.Node
         },
         effect2: {
-            'default': null,
+            default: null,
             type: cc.Node
         },
         animapre: {
-            'default': null,
+            default: null,
             type: cc.Prefab
         },
         shootNode: { //【远程攻击判断碰撞框】
-            'default': null,
+            default: null,
             type: cc.Prefab
         },
         id : 1,  //id
@@ -50,21 +50,22 @@ var UnitSprite = cc.Class({
         beHitCount : 0,      //受击数
         moveRange: new cc.Vec2(0, 0), //移动范围
         _attackMode: 0, //普通攻击模式
-        speed: new cc.Vec2(0, 0) //速度
+        speed: new cc.Vec2(0, 0), //速度
+        skillID : []                //包含技能（ID）
         
     },
 
     // use this for initialization
-    onLoad: function onLoad() {
+    onLoad: function () {
     },
 
     //改变状态机状态
-    changeState: function changeState(enstate) {
+    changeState: function (enstate) {
         this.mCurState = enstate;
     },
 
     //攻击发出抛出物（远程）count：发出个数，animation : 是否播放动画
-    attackShoot: function attackShoot(pos, count, animation) {
+    attackShoot: function (pos, count, animation) {
         if(animation){
             
         }else
@@ -80,7 +81,7 @@ var UnitSprite = cc.Class({
      * 攻击模式（普通射击、2：技能
      * 位置模式（1：effect1，2：effect2, 3:effect1+effect2, 4:跟踪hero位置， 5：自定义位置）
      */
-    onShoot: function onShoot(pos, count) {
+    onShoot: function (pos, count) {
         var shootNode = cc.instantiate(this.shootNode);
         shootNode.group =  this.type === 0 ? 'heroAttack' : 'monsterAttack';
         shootNode.parent = this.node.parent;
@@ -116,9 +117,9 @@ var UnitSprite = cc.Class({
         }, shootNode)));
     },
 
-    //技能(位置， 速度， )
-    onskill: function onskill(pos, speed, res) {
-        var loadAnim = cc.instantiate(this.animapre);
+    //技能(位置，模式【1：飞行时无伤害，碰到敌人才爆炸伤害， 2：一直飞行一直伤害】)
+    onskill: function (pos, count) {
+        var loadAnim = cc.instantiate(this.shootNode);
         loadAnim.parent = this.node.parent;
         loadAnim.setPosition(cc.p(800, 500));
         var AanimCtrl = loadAnim.getComponent(cc.Animation);

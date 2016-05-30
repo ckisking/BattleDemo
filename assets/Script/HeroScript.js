@@ -17,7 +17,7 @@ var BeHitState = require('BeHitState');
 var SkillState = require('SkillState');
 
 var Hero = cc.Class({
-    'extends': UnitSprite,
+    extends : UnitSprite,
     properties: {
         boneSpeed: 0.8, // 【速度】
         jumpSpeed: 300, //跳跃速度
@@ -29,7 +29,7 @@ var Hero = cc.Class({
         instance: null
     },
 
-    onLoad: function onLoad() {
+    onLoad: function () {
         //初始化类单例
         Hero.instance = this;
         //记录普通攻击模式
@@ -50,7 +50,7 @@ var Hero = cc.Class({
             }
         }, self);
     },
-    start: function start() {
+    start: function () {
         //初始动作化状态机
         this.idelState = new IdelState();
         this.walkState = new WalkState();
@@ -65,12 +65,13 @@ var Hero = cc.Class({
         this.skillid = 0;
     },
     //初始化英雄属性
-    initHero: function initHero(range) {
+    initHero: function (range) {
         this.moveRange = range;
+        this.skillID = [10001, 10002, 10003, 10004];
     },
 
     //碰撞时触发
-    onCollisionEnter: function onCollisionEnter(other, self) {
+    onCollisionEnter: function (other, self) {
         var otherGroup = other.node.group;
         var selfGroup = self.node.group;
         if (otherGroup == "monsterAttack" && selfGroup == "hero") {
@@ -99,14 +100,14 @@ var Hero = cc.Class({
         }
     },
     //碰撞中，离开碰撞后触发
-    onCollisionExit: function onCollisionExit(other) {},
+    onCollisionExit: function (other) {},
     //隐藏后关闭碰撞
-    onDisabled: function onDisabled() {
+    onDisabled: function () {
         cc.director.getCollisionManager().enabledDebugDraw = false;
     },
 
     //重置连击数
-    onResetCombo: function onResetCombo(dt) {
+    onResetCombo: function (dt) {
         this.combo = 0;
     },
     ///////////////////////////////////////////////////////////////////
@@ -114,7 +115,7 @@ var Hero = cc.Class({
     //////////////////////////////////////////////////////////////////
 
     //根据方向判断是否改变状态
-    changestateByDir: function changestateByDir(dir) {
+    changestateByDir: function (dir) {
         if (dir > 0) {
             this.onRun();
         } else if (dir === 0) {
@@ -129,7 +130,7 @@ var Hero = cc.Class({
             }
     },
     // 跑动
-    onRun: function onRun() {
+    onRun: function () {
         // 获取摇杆方向
         var dir = Rocker._direction;
         // 获取摇杆速度 (取值范围[0-1])
@@ -194,12 +195,12 @@ var Hero = cc.Class({
     },
 
     //待机状态时执行
-    onIdel: function onIdel() {
+    onIdel: function () {
         this.anim.play('2hero_stand0');
         this._actionState = ActionState.ACTION_STATE_IDLE;
     },
     //普通攻击状态时执行
-    onNorAttack: function onNorAttack() {
+    onNorAttack: function () {
         if (this._attackMode < AttackMode.ATTACK_4) {
             var animName = '2hero_attack' + 1;
             this.anim.play(animName);
@@ -212,22 +213,22 @@ var Hero = cc.Class({
         this._actionState = ActionState.ACTION_STATE_NOR_ATTACK;
     },
     //技能攻击状态时执行
-    onSkillState: function onSkillState() {
+    onSkillState: function () {
         this.anim.play( this.skillid );
         this._actionState = ActionState.ACTION_STATE_SKILL_ATTACK;
     },
     //移动状态时执行
-    onWalk: function onWalk() {
+    onWalk: function () {
         this.anim.play('2hero_walk');
         this._actionState = ActionState.ACTION_STATE_WALK;
     },
     //奔跑状态时执行
-    onRunState: function onRunState() {
+    onRunState: function () {
         this.anim.play('2hero_run');
         this._actionState = ActionState.ACTION_STATE_RUN;
     },
     //跳跃状态时执行
-    onJumpState: function onJumpState() {
+    onJumpState: function () {
         this.anim.play('2hero_jump0');
         this._actionState = ActionState.ACTION_STATE_JUMP;
         this.speed.y = this.jumpSpeed;
@@ -239,7 +240,7 @@ var Hero = cc.Class({
         this.prePos.y = this.node.y;
     },
     //被攻击状态时执行
-    onHit: function onHit() {
+    onHit: function () {
         this._actionState = ActionState.ACTION_STATE_BEHIT;
         this.anim.play('2hero_behit');
         this.node.color = cc.Color.RED;
@@ -251,30 +252,30 @@ var Hero = cc.Class({
     //////////////////////////////////////////////////////////////////////
 
     //普通按钮回调
-    onNorAttackCall: function onNorAttackCall() {
+    onNorAttackCall: function () {
         this.changeState(this.norAttackState);
         this.mCurState.execute(this);
     },
     //跳跃按钮回调
-    onJumpCall: function onJumpCall() {
+    onJumpCall: function () {
         this.changeState(this.jumpState);
         this.mCurState.execute(this);
     },
     //技能攻击回调
-    onSkillCall: function onSkillCall(skillid) {
+    onSkillCall: function (skillid) {
         this.skillid = "2hero_skill" + skillid;
         cc.log(this.skillid);
         this.changeState(this.skillState);
         this.mCurState.execute(this);
     },
     //被攻击后恢复正常状态
-    onRecoverState: function onRecoverState() {
+    onRecoverState: function () {
         this.anim.play('2hero_stand0');
         this.node.color = cc.Color.WHITE;
         this._actionState = ActionState.ACTION_STATE_IDLE;
     },
     //死亡后触发
-    onDead: function onDead() {
+    onDead: function () {
         //this.node.runAction(cc.sequence(cc.blink(0.5, 4), cc.removeSelf(true)));
         //this.anim.play();
         var detail = "我死啦！！";
@@ -282,31 +283,31 @@ var Hero = cc.Class({
     },
 
     //改变攻击方式（延迟执行)
-    changeAttackMode: function changeAttackMode() {
+    changeAttackMode: function () {
         this._attackMode = AttackMode.ATTACK_1;
     },
 
     //帧事件近战攻击attack1，监测碰撞开启
-    meleeAttack: function meleeAttack() {
+    meleeAttack: function () {
         this.collider.enabled = true;
     },
     //近战攻击结束，监测碰撞关闭
-    meleeAttackOver: function meleeAttackOver() {
+    meleeAttackOver: function () {
         this.collider.enabled = false;
     },
     //动作结束后触发回调
-    actionOver: function actionOver() {
+    actionOver: function () {
         this.unschedule(this.changeStateByTime);
         this.scheduleOnce(this.changeStateByTime, this.actionSpasticity);
         this.unschedule(this.changeAttackMode);
         this.scheduleOnce(this.changeAttackMode, 10);
     },
     //根据动作僵值时间，来执行
-    changeStateByTime: function changeStateByTime() {
+    changeStateByTime: function () {
         this._actionState = ActionState.ACTION_STATE_NONE;
     },
     // called every frame, uncomment this function to activate update callback
-    update: function update(dt) {
+    update: function (dt) {
         //当人物处于攻击、被攻击状态时无法移动、跳跃
         if (this._actionState == ActionState.ACTION_STATE_BEHIT || this._actionState == ActionState.ACTION_STATE_NOR_ATTACK || this._actionState == ActionState.ACTION_STATE_SKILL_ATTACK) {
             return;

@@ -15,11 +15,11 @@ var AiPursuitState = require('AiPursuitState');
 var AiBeHitState = require('AiBeHitState');
 
 cc.Class({
-    'extends': UnitSprite,
+    extends : UnitSprite,
 
     properties: {
         moveDirection: { //【行动方向】
-            'default': new cc.Vec2()
+            default: new cc.Vec2()
         },
         eyeArea: 800, //【警戒距离】
         attackArea: 0, //【攻击范围】
@@ -28,7 +28,7 @@ cc.Class({
         whetherIdel: false },
 
     //【是否会待着不动】
-    onLoad: function onLoad() {
+    onLoad: function () {
         this.type = 1;
         //初始化AI状态机
         this.aiPatrolState = new AiPatrolState();
@@ -44,12 +44,12 @@ cc.Class({
     },
 
     //初始化怪物属性
-    initMonster: function initMonster(range) {
+    initMonster: function (range) {
         this.moveRange = range;
     },
 
     //碰撞时触发
-    onCollisionEnter: function onCollisionEnter(other, self) {
+    onCollisionEnter: function (other, self) {
         var otherGroup = other.node.group;
         var selfGroup = self.node.group;
         // cc.log(self._size);
@@ -83,44 +83,44 @@ cc.Class({
     },
 
     //之前处于碰撞状态，离开碰撞范围后触发
-    onCollisionExit: function onCollisionExit(other, self) {},
+    onCollisionExit: function (other, self) {},
 
     //攻击开始判断【帧事件】
-    norAttackStart: function norAttackStart() {
+    norAttackStart: function () {
         this.collider.enabled = true;
     },
     //结束攻击判断【帧事件】
-    norAttackOver: function norAttackOver() {
+    norAttackOver: function () {
         this.collider.enabled = false;
     },
     //动作结束【帧事件】
-    actionOver: function actionOver() {
+    actionOver: function () {
         this.unschedule(this.changeStateByTime);
         this.scheduleOnce(this.changeStateByTime, this.actionSpasticity);
     },
     //根据动作僵值时间，来执行
-    changeStateByTime: function changeStateByTime() {
+    changeStateByTime: function () {
         this.changeActionByState(AIState.AI_IDEL);
     },
 
     //被攻击后恢复正常状态
-    onRecoverState: function onRecoverState() {
+    onRecoverState: function () {
         this.anim.play('m001_stand');
         this.node.color = cc.Color.WHITE;
         this.aiState = AIState.AI_NONE;
     },
 
     //死亡后触发
-    onDead: function onDead() {
+    onDead: function () {
         this.node.runAction(cc.sequence(cc.blink(0.5, 4), cc.removeSelf(true)));
     },
     //被隐藏后执行
-    onDisabled: function onDisabled() {
+    onDisabled: function () {
         cc.director.getCollisionManager().enabledDebugDraw = false;
     },
 
     //根据状态改变动画
-    changeActionByState: function changeActionByState(state) {
+    changeActionByState: function (state) {
         var anim = this.getComponent(cc.Animation);
         this.aiState = state;
         if (state == AIState.AI_IDEL) {
@@ -134,7 +134,7 @@ cc.Class({
         }
     },
     //巡逻时执行
-    onPatrol: function onPatrol() {
+    onPatrol: function () {
         var moveDirectionx = this.getRandomInt(-1, 2);
         var moveDirectiony = this.getRandomInt(-1, 2);
         this.moveDirection.x = moveDirectionx > 0 ? moveDirectionx + this.speed.x : moveDirectionx - this.speed.x;
@@ -144,20 +144,20 @@ cc.Class({
         this.changeActionByState(AIState.AI_PATROL);
     },
     //待机时执行
-    onIdel: function onIdel() {
+    onIdel: function () {
         this.changeActionByState(AIState.AI_IDEL);
         this.moveDirection = cc.p(0, 0);
     },
     //追击时执行
-    onPursuit: function onPursuit() {
+    onPursuit: function () {
         this.changeActionByState(AIState.AI_PURSUIT);
     },
     //获取随机数（min-max不包含max）
-    getRandomInt: function getRandomInt(min, max) {
+    getRandomInt: function (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     },
     //攻击状态时执行
-    onAttack: function onAttack() {
+    onAttack: function () {
         var currentP = this.node.position; //当前坐标
         var heroPos = Hero.instance.node.position; //英雄坐标
         if (heroPos.x > currentP.x) {
@@ -177,14 +177,14 @@ cc.Class({
         // }
     },
     //被攻击状态时执行
-    onHit: function onHit() {
+    onHit: function () {
         this.aiState = AIState.AI_BEHIT;
         this.unschedule(this.onRecoverState);
         this.scheduleOnce(this.onRecoverState, this.hitSpasticity);
     },
 
     //AI判断
-    execute: function execute(target, targetBodyWidth) {
+    execute: function (target, targetBodyWidth) {
         //延时判定
         if (this.nextDecisionTime <= 0) {
             this.decide(target, targetBodyWidth);
@@ -194,7 +194,7 @@ cc.Class({
     },
 
     //AI状态机FSM
-    decide: function decide(target, targetBodyWidth) {
+    decide: function (target, targetBodyWidth) {
         var self = this;
         var pos = this.node.position;
         var distance = cc.pDistance(pos, target);
@@ -245,7 +245,7 @@ cc.Class({
         this.mCurState.execute(this);
     },
 
-    update: function update(dt) {
+    update: function (dt) {
         this.execute(Hero.instance.node.position, Hero.instance.node.width);
         if (this.aiState == AIState.AI_PATROL) {
             var currentP = this.node.position; //当前坐标

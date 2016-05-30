@@ -3,13 +3,13 @@
  */
 var AIState = require('GlobalScript').AIState;
 var AiSkillState = cc.Class({
-    'extends': cc.Component,
+    extends : cc.Component,
 
-    properties: function properties() {
+    properties: function () {
         return {};
     },
 
-    execute: function execute(unit) {
+    execute: function (unit) {
         //获取角色之前的状态
         var oldState = unit.aiState;
         //角色在不是[攻击]、[被攻击]的状态下都能转化为攻击状态

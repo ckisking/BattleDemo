@@ -4,23 +4,23 @@
 var Monster = require('MonsterScript');
 var Hero = require('HeroScript');
 var Battle = cc.Class({
-    'extends': cc.Component,
+    extends : cc.Component,
 
     properties: {
         floorNode: { //[地板]
-            'default': null,
+            default: null,
             type: cc.Node
         },
         bgNode: {
-            'default': null,
+            default: null,
             type: cc.Node
         },
         cdbtn: {
-            'default': [],
+            default: [],
             type: cc.Node
         },
         battleUi: {
-            'default': null,
+            default: null,
             type: cc.Node
         },
         hpBar : {
@@ -40,7 +40,7 @@ var Battle = cc.Class({
         monsterArr: [] },
     //怪物数组
     // use this for initialization
-    onLoad: function onLoad() {
+    onLoad: function () {
         this.hero = cc.find("Canvas/BattleLayer/floorNode/heroPrefab");
         this.monster = cc.find("Canvas/BattleLayer/floorNode/monsterNode");
         this.monster.getComponent('MonsterScript').initMonster(cc.p(this.floorNode.width, this.floorNode.height));
@@ -60,23 +60,26 @@ var Battle = cc.Class({
              cc.log("图片:" + count);
             });
             
-        this.cdbtn[0].tag = 1;
+        this.cdbtn[0].tag = 10001;
         this.cdbtn[0].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
         })
-        this.cdbtn[1].tag = 3;
+        this.cdbtn[1].tag = 10002;
         this.cdbtn[1].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
         })
-        this.cdbtn[2].tag = 8;
+        this.cdbtn[2].tag = 10003;
         this.cdbtn[2].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
         })
-        this.cdbtn[3].tag = 9;
+        this.cdbtn[3].tag = 10004;
         this.cdbtn[3].on("touchstart", (event)=>{
                Hero.instance.onSkillCall(event.target.tag);
         })
-        
+        this.cdbtn[4].tag = 5;
+        this.cdbtn[4].on("touchstart", (event)=>{
+               Hero.instance.onskill(1,1);
+        })
         //格式化输出字符测试
         var template1="我是{0}，今年{1}了";
         var result1=template1.format("loogn",22);
@@ -95,7 +98,7 @@ var Battle = cc.Class({
     },
     
     //动态添加按钮（技能）
-    loadskillButton: function loadskillButton() {
+    loadskillButton: function () {
         var btn = cc.instantiate(this.cdbtn);
         btn.getComponent('CdButton').initBtn(1001, 2, "image/skillicon/Mission_Skill_5_disable");
         btn.position = cc.p(200, 100);
@@ -104,21 +107,21 @@ var Battle = cc.Class({
     },
 
     //普通按钮回调
-    onNorAttackCall: function onNorAttackCall() {
+    onNorAttackCall: function () {
         Hero.onNorAttackCall();
     },
     //跳跃按钮回调
-    onJumpCall: function onJumpCall() {},
+    onJumpCall: function () {},
 
     //保存数据按钮(测试动态添加button)
-    onSaveCall: function onSaveCall() {
+    onSaveCall: function () {
         var node = cc.instantiate(new cc.Node("newNode"));
         var commponent = node.addComponent(cc.Sprite);
         component.spriteFrame = "";
     },
 
     //屏幕滚动
-    screenRol: function screenRol() {
+    screenRol: function () {
         var heroPos = Hero.instance.node.parent.convertToWorldSpace(Hero.instance.node.position);
         var bgNodePos = this.bgNode.position;
         var herospeedX = Hero.instance.speed.x;
@@ -138,7 +141,7 @@ var Battle = cc.Class({
         this.floorNode.x = bgNodePos.x;
     },
     // called every frame, uncomment this function to activate update callback
-    update: function update(dt) {
+    update: function (dt) {
         this.screenRol();
         this.hpBar.fillRange = Hero.instance.hp / 1000;
         // this.monster.getComponent('MonsterScript').execute( this.hero.position, this.hero.width);1

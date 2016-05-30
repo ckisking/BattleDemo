@@ -1,16 +1,16 @@
 cc.Class({
-    "extends": cc.Component,
+    extends : cc.Component,
 
     properties: {
         cdBg: {
-            "default": null,
+            default : null,
             type: cc.Sprite
         },
         skillcd: 5
     },
 
     // use this for initialization
-    onLoad: function onLoad() {
+    onLoad: function () {
         var _this = this;
 
         this.isCD = false;
@@ -28,7 +28,7 @@ cc.Class({
     },
 
     //初始化
-    initBtn: function initBtn(skillid, cd, res) {
+    initBtn: function (skillid, cd, res) {
         this.node.tag = skillid;
         this.skillcd = cd;
         var image = this.cdBg;
@@ -40,7 +40,7 @@ cc.Class({
     },
     
     //技能冷却,根据speed来修改冷却的时间
-    updateFillRange: function updateFillRange(dt) {
+    updateFillRange: function (dt) {
         var fillRange = this.cdBg.fillRange;
         fillRange = fillRange - 0.1 / this.skillcd;
         if (fillRange <= 0) {

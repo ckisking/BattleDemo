@@ -1,0 +1,174 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "2hero_skill3",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.9,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "a9302252-e8cb-4b5b-92d7-34022ab7003b"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "03296557-b44a-4124-951a-97e3d0a3f7a9"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "d83d21ec-6fec-40c6-b562-5b1cac052822"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "0f686cf4-5a06-4193-9dee-f51d447b4598"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "534e0926-7fdf-48b0-b83c-9ffc2447aaba"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "969bf26c-1e80-4608-a1c0-0daa36a5a1ca"
+            }
+          },
+          {
+            "frame": 0.6,
+            "value": {
+              "__uuid__": "d83d21ec-6fec-40c6-b562-5b1cac052822"
+            }
+          },
+          {
+            "frame": 0.7,
+            "value": {
+              "__uuid__": "03296557-b44a-4124-951a-97e3d0a3f7a9"
+            }
+          },
+          {
+            "frame": 0.8,
+            "value": {
+              "__uuid__": "a9302252-e8cb-4b5b-92d7-34022ab7003b"
+            }
+          }
+        ]
+      }
+    },
+    "paths": {
+      "attackCollider": {
+        "comps": {
+          "cc.BoxCollider": {}
+        },
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                -32,
+                35
+              ]
+            }
+          ]
+        }
+      },
+      "effect1": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                0,
+                62
+              ]
+            }
+          ],
+          "active": [
+            {
+              "frame": 0,
+              "value": true
+            },
+            {
+              "frame": 0.8,
+              "value": false
+            }
+          ]
+        },
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "0d6b93af-7618-4430-b71b-595b14924f66"
+                }
+              },
+              {
+                "frame": 0.1,
+                "value": {
+                  "__uuid__": "8e49866b-fb13-4635-ae18-7b778bcc03b5"
+                }
+              },
+              {
+                "frame": 0.2,
+                "value": {
+                  "__uuid__": "3d2727f4-c2e0-4372-8890-3d67e64f7d65"
+                }
+              },
+              {
+                "frame": 0.3,
+                "value": {
+                  "__uuid__": "0c2fe566-60c1-4552-8df0-5f0400599789"
+                }
+              },
+              {
+                "frame": 0.4,
+                "value": {
+                  "__uuid__": "0898b153-cb47-4b47-b15a-b2f5da4f703d"
+                }
+              },
+              {
+                "frame": 0.5,
+                "value": {
+                  "__uuid__": "fc23c8d5-90bf-4da9-a127-5ad890f29a08"
+                }
+              },
+              {
+                "frame": 0.6,
+                "value": {
+                  "__uuid__": "0befc493-d50b-4fc4-a7a6-fdb08364fd21"
+                }
+              },
+              {
+                "frame": 0.7,
+                "value": {
+                  "__uuid__": "f191e6fd-e734-4fbc-9772-527462f9d874"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.8,
+      "func": "actionOver",
+      "params": []
+    }
+  ]
+}
